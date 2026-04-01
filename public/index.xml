@@ -18,10 +18,17 @@
     </item>
     <item>
       <title>Autoencoder</title>
+      <link>https://example.org/posts/autoencoder-1/</link>
+      <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
+      <guid>https://example.org/posts/autoencoder-1/</guid>
+      <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;&#xA;&lt;p&gt;La suddivisione del dataset è stata effettuata utilizzando la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo fondamentale è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1).&lt;/p&gt;&#xA;&lt;p&gt;Il motivo risiede nella natura stessa dell&amp;rsquo;&lt;strong&gt;anomaly detection&lt;/strong&gt; tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Autoencoder</title>
       <link>https://example.org/posts/autoencoder/</link>
       <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
       <guid>https://example.org/posts/autoencoder/</guid>
-      <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;&#xA;&lt;p&gt;La suddivisione del dataset è stata effettuata mediante la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo di questa fase è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1). Il motivo risiede nel fatto che, per effettuare &lt;em&gt;anomaly detection&lt;/em&gt; con un autoencoder, è necessario addestrare il modello esclusivamente su dati normali; in questo modo, il modello imparerà a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;, restituendo un errore di ricostruzione sensibilmente più alto quando, in fase di test, incontrerà esempi di aziende prossime alla bancarotta.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;&#xA;&lt;p&gt;La suddivisione del dataset è stata effettuata utilizzando la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo fondamentale è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1).&lt;/p&gt;&#xA;&lt;p&gt;Il motivo risiede nella natura stessa dell&amp;rsquo;&lt;strong&gt;anomaly detection&lt;/strong&gt; tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -55,6 +55,10 @@ pagination.pagerSize     = 10
       "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
     ]
 
+[params.Logo]
+  logoText = "Bernardo Trotta"
+  logoHomeLink = "/"
+
 [params.Portrait]
   Path = "/images/mia-foto.jpg"
   Alt = "Bernardo Trotta"
@@ -87,6 +91,25 @@ pagination.pagerSize     = 10
     # path = "/img/your-example-logo.svg"
     # alt = "Your example logo alt text"
 
+  [languages.it]
+    title = "Benvenuto bro"
+    keywords = ""
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    readOtherPosts = "Leggi altri articoli"
+
+  [languages.it.params]
+    homeSubtitle  = "Ciao a tutti, sono Bernardo Trotta e benvenuti sul mio fantastico sito"
+
+  [[languages.it.menu.main]]
+    identifier = "about"
+    name       = "Chi sono"
+    url        = "/about"
+
+  [[languages.it.menu.main]]
+    identifier = "blog"
+    name       = "Blog"
+    url        = "/posts"
+
   # And you can even create generic menu
   [[menu.main]]
     identifier = "about"
@@ -99,17 +122,17 @@ pagination.pagerSize     = 10
     url        = "/posts"
 
   # and submenus
-  [[menu.main]]
-    identifier  = "parent"
-    name        = "Parent"
-    url         = "/parent"
-    hasChildren = true
+#  [[menu.main]]
+#    identifier  = "parent"
+#    name        = "Parent"
+#    url         = "/parent"
+#    hasChildren = true
 
-  [[menu.main]]
-    identifier  = "child"
-    name        = "Child"
-    url         = "/parent/child"
-    parent      = "parent"
+#  [[menu.main]]
+#    identifier  = "child"
+#    name        = "Child"
+#    url         = "/parent/child"
+#    parent      = "parent"
 
 [caches]
   [caches.images]
