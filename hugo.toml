@@ -4,6 +4,15 @@ languageCode = "en-us"
 theme        = "hello-friend-ng"
 pagination.pagerSize     = 10
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+
 [params]
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
@@ -68,7 +77,7 @@ pagination.pagerSize     = 10
     readOtherPosts = "Read other posts"
 
   [languages.en.params]
-    subtitle  = "A simple theme for Hugo"
+    subtitle  = "ciao a tutti, sono Bernardo Trotta e benvenuti sul mio fantastico sito"
 
     [languages.en.params.logo]
       logoText = "Bernardo Trotta"
