@@ -1,19 +1,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Hello Dude!</title>
-        <link>http://localhost:1313/posts/</link>
+        <link>https://example.org/posts/</link>
         <description>Recent content in Posts on Hello Dude!</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-        <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Tue, 31 Mar 2026 19:30:00 +0000</lastBuildDate>
+        <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>Autoencoder</title>
-            <link>http://localhost:1313/posts/autoencoder/</link>
+            <link>https://example.org/posts/06.-the-blog/autoencoder/</link>
+            <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
+            
+            <guid>https://example.org/posts/06.-the-blog/autoencoder/</guid>
+            <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;
+&lt;p&gt;La suddivisione del dataset è stata effettuata mediante la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo di questa fase è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1). Il motivo risiede nel fatto che, per effettuare &lt;em&gt;anomaly detection&lt;/em&gt; con un autoencoder, è necessario addestrare il modello esclusivamente su dati normali; in questo modo, il modello imparerà a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;, restituendo un errore di ricostruzione sensibilmente più alto quando, in fase di test, incontrerà esempi di aziende prossime alla bancarotta.&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<h2 id="step-1-suddivisione-del-dataset">Step 1: Suddivisione del dataset</h2>
+<p>La suddivisione del dataset è stata effettuata mediante la funzione <code>train_test_split</code> del modulo <code>sklearn.model_selection</code>, dopo aver caricato i dati con la libreria <em>pandas</em>. Il primo passo di questa fase è stato separare i record delle aziende classificate come &ldquo;sane&rdquo; (valore 0 nella colonna <code>class</code>) da quelle in fallimento (valore 1). Il motivo risiede nel fatto che, per effettuare <em>anomaly detection</em> con un autoencoder, è necessario addestrare il modello esclusivamente su dati normali; in questo modo, il modello imparerà a ricostruire accuratamente la &ldquo;normalità&rdquo;, restituendo un errore di ricostruzione sensibilmente più alto quando, in fase di test, incontrerà esempi di aziende prossime alla bancarotta.</p>
+<p>Il dataset delle aziende sane è stato quindi suddiviso: il 70% è stato destinato al <em>train set</em>, mentre il restante 30% è stato ripartito equamente (50% ciascuno) tra <em>validation set</em> e <em>test set</em>. Poiché questi ultimi due devono contenere entrambe le categorie di aziende per una valutazione corretta, sono stati successivamente integrati con i dati delle aziende fallite e rimescolati. Per la valutazione finale, è stata preservata la colonna dei target per ogni set.</p>
+<h2 id="step-2-pulizia-dei-dati">Step 2: Pulizia dei dati</h2>
+<p>Per lavorare sul dataset <em>Polish Companies Bankruptcy</em> è stato necessario un intervento di eliminazione dei valori nulli dalle colonne delle features e una successiva normalizzazione, necessaria a causa di valori che si discostavano eccessivamente dal valore medio.</p>
+<p>Per la rimozione dei valori nulli è stato utilizzato <strong>SimpleImputer</strong>, che di default sostituisce i valori mancanti con il valore medio della colonna. È importante sottolineare che questa strategia è valida solo per colonne con valori numerici; in caso di valori categorici, si potrebbe adottare la strategia del <em>most frequent</em> o del <em>constant</em>.</p>
+<p>Per la normalizzazione, su consiglio del docente, è stato adottato lo <strong>StandardScaler</strong>, che esegue una normalizzazione usando lo <em>standard score</em>:</p>
+$$z= \frac{x-\mu}{\sigma}$$<p>Dove $\mu$ è il valore medio della colonna e $\sigma$ la deviazione standard (ovvero di quanto, in media, i valori si allontanano dal valore medio: una deviazione standard bassa indica dati simili tra loro, mentre una alta indica dati molto diversi).</p>
+<p>In pratica, per ogni colonna delle features vengono calcolate la deviazione standard e il valore medio. A seguire viene calcolato per ogni singolo valore lo <em>z-score</em>, che rappresenta il nuovo valore scalato. Il risultato finale è che ogni colonna viene centrata intorno allo zero, ma <strong>non limitata</strong> in un intervallo predefinito (risultato che si otterrebbe invece usando un <strong>MinMaxScaler</strong>).</p>
+<p>È fondamentale notare come i parametri usati da <strong>SimpleImputer</strong> e <strong>StandardScaler</strong> debbano essere calcolati esclusivamente sul set di <em>train</em> (fase di <em>fitting</em>). La trasformazione vera e propria viene eseguita successivamente su tutti i set (<em>train</em>, <em>validation</em> e <em>test</em>), ma utilizzando esclusivamente i parametri derivati dal <em>train</em> per evitare fenomeni di <em>data leakage</em>.</p>
+<h2 id="step-3-definizione-del-modello">Step 3: Definizione del modello</h2>
+<h2 id="step-4-addestramento">Step 4: Addestramento</h2>
+<p>Data l&rsquo;entità del dataset, è stata utilizzata una strategia di <em>data loading</em> per suddividere gli esempi in <em>batch</em>, evitando così di sovraccaricare le risorse hardware. Durante la fase di addestramento (estesa per 100 epoche), i <em>batch</em> vengono caricati e le <em>features</em> elaborate dal modello: queste vengono scompattate, compresse, ricostruite e infine confrontate con i valori di ingresso per calcolare la <em>loss</em>. Come ottimizzatore è stato scelto <strong>AdamW</strong>, mentre come funzione di costo è stato adottato il <strong>Mean Squared Error (MSE)</strong>. A questo punto ha inizio la fase di <em>backpropagation</em> per l&rsquo;aggiornamento dei pesi del modello.</p>
+<p>Per monitorare l&rsquo;andamento del processo, invece di visualizzare la <em>loss</em> per ogni singolo record, viene calcolato il valore medio della perdita per ogni epoca. Nello specifico, <code>features.size(0)</code> restituisce il numero di campioni $N_i$ presenti nel batch corrente.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> features, labels <span style="color:#f92672">in</span> train_loader:
+</span></span><span style="display:flex;"><span>        features <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        reconstructed <span style="color:#f92672">=</span> autoencoder(features)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> criterion_train(reconstructed, features)
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>        running_train_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item() <span style="color:#f92672">*</span> features<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    epoch_train_loss <span style="color:#f92672">=</span> running_train_loss <span style="color:#f92672">/</span> len(train_loader<span style="color:#f92672">.</span>dataset)
+</span></span><span style="display:flex;"><span>    training_losses<span style="color:#f92672">.</span>append(epoch_train_loss)
+</span></span></code></pre></div><p>La variabile <code>running_train_loss</code> accumula l&rsquo;errore totale dell&rsquo;intera epoca. Poiché <code>loss.item()</code> restituisce la perdita media del batch corrente ($\bar{\mathcal{L}}_i$), per ottenere la somma degli errori di tutti i campioni del batch si moltiplica tale valore per la dimensione del batch stesso ($N_i$):</p>
+$$\text{Errore}_{batch} = \bar{\mathcal{L}}_i \cdot N_i$$<p>L&rsquo;errore cumulativo totale per l&rsquo;intera epoca ($L_{total}$) è quindi la somma degli errori di tutti i $B$ batch:</p>
+$$L_{total} = \sum_{i=1}^B \left( \bar{\mathcal{L}}_i \cdot N_i \right)$$<p>Al termine dell&rsquo;epoca, la perdita media finale ($L_{epoch}$) viene calcolata dividendo l&rsquo;errore totale accumulato per il numero complessivo di campioni nel dataset di <em>training</em> ($N_{total}$):</p>
+$$L_{epoch} = \frac{L_{total}}{N_{total}}$$<p>Questo valore viene infine salvato per il successivo <em>plotting</em> dell&rsquo;andamento dell&rsquo;addestramento.</p>
+<p>Le precedenti formule possono anche essere riscritte nel seguente modo:</p>
+$$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\right)$$<p>dove:</p>
+<ul>
+<li>$i$ = indice del batch</li>
+<li>$j$ = elemento dentro il batch</li>
+<li>$B$ = numero di batch</li>
+<li>$N_i$ = numero di elementi nel batch $i$</li>
+</ul>
+<p>Nel ciclo di validazione, eseguito al termine della fase di addestramento di ogni epoca, viene valutata la capacità del modello di ricostruire i report forniti, comprendenti sia aziende sane che aziende prossime alla bancarotta. Anche in questo caso, viene calcolata la <em>loss</em> media per ogni epoca seguendo la stessa logica di normalizzazione.</p>
+<p>Una volta completate le fasi di addestramento e validazione, il passo successivo consiste nel determinare una <em>threshold</em> adeguata per valutare la capacità del modello di individuare anomalie.</p>
+<p>L&rsquo;idea di base è calcolare gli <em>anomaly scores</em> sul set di validazione, analizzarne la distribuzione (ad esempio tramite un grafico) e utilizzarli per definire la soglia decisionale. In questo caso, l&rsquo;anomaly score è stato definito come la <strong>loss media per ciascun record</strong> del dataset.</p>
+<p>Per ottenere questo risultato, è stato necessario introdurre un criterio di valutazione separato, impostando il parametro <code>reduction='none'</code>. In questo modo, invece di ottenere un unico valore medio per batch, si ricava una matrice che contiene, per ogni elemento del batch, l&rsquo;errore associato a ciascuna feature.</p>
+<p>Successivamente, si applica una riduzione calcolando la media lungo le righe della matrice, ottenendo così un vettore in cui ogni elemento rappresenta l&rsquo;errore medio di ricostruzione per una singola transazione, ovvero il relativo anomaly score.</p>
+<h2 id="nota">Nota</h2>
+<p>Per quanto possa sembrare controintuitivo, i calcoli nei vari cicli non servono a prendere elemento per elemento, bensì, quello che avviene è un prodotto tra matrici che contengono o parti del dataset grazie al loader o tutto il dataset stesso</p>
+<p>![[DF5E72E0-8610-452A-8434-02FE55D03AA6.jpg]]</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Autoencoder</title>
+            <link>https://example.org/posts/autoencoder/</link>
             <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
             
-            <guid>http://localhost:1313/posts/autoencoder/</guid>
+            <guid>https://example.org/posts/autoencoder/</guid>
             <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;
 &lt;p&gt;La suddivisione del dataset è stata effettuata mediante la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo di questa fase è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1). Il motivo risiede nel fatto che, per effettuare &lt;em&gt;anomaly detection&lt;/em&gt; con un autoencoder, è necessario addestrare il modello esclusivamente su dati normali; in questo modo, il modello imparerà a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;, restituendo un errore di ricostruzione sensibilmente più alto quando, in fase di test, incontrerà esempi di aziende prossime alla bancarotta.&lt;/p&gt;</description>
             <content type="html"><![CDATA[<h2 id="step-1-suddivisione-del-dataset">Step 1: Suddivisione del dataset</h2>

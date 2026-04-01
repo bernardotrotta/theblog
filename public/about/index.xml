@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Hello Dude!</title>
-    <link>http://localhost:1313/about/</link>
+    <link>https://example.org/about/</link>
     <description>Recent content in About on Hello Dude!</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 01 Apr 2026 11:49:24 +0200</lastBuildDate>
-    <atom:link href="http://localhost:1313/about/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://example.org/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Me</title>
-      <link>http://localhost:1313/about/me/</link>
+      <link>https://example.org/about/me/</link>
       <pubDate>Wed, 01 Apr 2026 11:49:24 +0200</pubDate>
-      <guid>http://localhost:1313/about/me/</guid>
+      <guid>https://example.org/about/me/</guid>
       <description>&lt;h1 id=&#34;mi-presento&#34;&gt;Mi presento&lt;/h1&gt;&#xA;&lt;p&gt;Ciao a tutti, questo è il mio primo blog&lt;/p&gt;</description>
     </item>
   </channel>
