@@ -42,7 +42,9 @@
 
   <meta itemprop="name" content="Autoencoder">
   <meta itemprop="description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata mediante la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo di questa fase è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1). Il motivo risiede nel fatto che, per effettuare anomaly detection con un autoencoder, è necessario addestrare il modello esclusivamente su dati normali; in questo modo, il modello imparerà a ricostruire accuratamente la “normalità”, restituendo un errore di ricostruzione sensibilmente più alto quando, in fase di test, incontrerà esempi di aziende prossime alla bancarotta.">
-  <meta itemprop="wordCount" content="1010">
+  <meta itemprop="datePublished" content="2026-03-31T19:30:00+00:00">
+  <meta itemprop="dateModified" content="2026-03-31T19:30:00+00:00">
+  <meta itemprop="wordCount" content="1011">
   <meta itemprop="image" content="https://example.org/">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -59,6 +61,8 @@
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-31T19:30:00+00:00">
+    <meta property="article:modified_time" content="2026-03-31T19:30:00+00:00">
     <meta property="og:image" content="https://example.org/">
 
 
@@ -66,7 +70,7 @@
 
 
 
-    <meta property="article:published_time" content="0001-01-01 00:00:00 &#43;0000 UTC" />
+    <meta property="article:published_time" content="2026-03-31 19:30:00 &#43;0000 UTC" />
 
 
 
@@ -229,6 +233,7 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
 <p>Successivamente, si applica una riduzione calcolando la media lungo le righe della matrice, ottenendo così un vettore in cui ogni elemento rappresenta l&rsquo;errore medio di ricostruzione per una singola transazione, ovvero il relativo anomaly score.</p>
 <h2 id="nota">Nota</h2>
 <p>Per quanto possa sembrare controintuitivo, i calcoli nei vari cicli non servono a prendere elemento per elemento, bensì, quello che avviene è un prodotto tra matrici che contengono o parti del dataset grazie al loader o tutto il dataset stesso</p>
+<p>!<img src="/images/DF5E72E0-8610-452A-8434-02FE55D03AA6.jpg" alt="Image Description"></p>
 
         </div>
       </article>
@@ -247,7 +252,7 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
             <line x1="16" y1="17" x2="8" y2="17"></line>
             <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
-          1010 Words
+          1011 Words
         </p>
 
         <p>
@@ -258,9 +263,11 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
           
-            0001-01-01 00:49
+            2026-03-31 21:30
           
 
+           
+            
           
         </p>
       </div>
@@ -359,23 +366,6 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
         </div>
 
       
-    <div class="pagination">
-        
-
-        <div class="pagination__buttons">
-            
-            <span class="button previous">
-                <a href="https://example.org/posts/06.-the-blog/autoencoder/">
-                    <span class="button__icon">←</span>
-                    <span class="button__text">Autoencoder</span>
-                </a>
-            </span>
-            
-
-            
-        </div>
-    </div>
-
 
       
 

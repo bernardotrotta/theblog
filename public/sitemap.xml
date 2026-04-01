@@ -8,7 +8,7 @@
     <loc>https://example.org/about/me/</loc>
     <lastmod>2026-04-01T11:49:24+02:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/06.-the-blog/autoencoder/</loc>
+    <loc>https://example.org/posts/autoencoder/</loc>
     <lastmod>2026-03-31T19:30:00+00:00</lastmod>
   </url><url>
     <loc>https://example.org/posts/</loc>
@@ -16,8 +16,6 @@
   </url><url>
     <loc>https://example.org/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://example.org/posts/autoencoder/</loc>
   </url><url>
     <loc>https://example.org/blog/</loc>
   </url><url>

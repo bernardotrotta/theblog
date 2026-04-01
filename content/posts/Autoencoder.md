@@ -1,5 +1,5 @@
 ---
-date:
+date: 2026-03-31T19:30:00
 draft: "false"
 title: Autoencoder
 ---
@@ -85,3 +85,5 @@ Successivamente, si applica una riduzione calcolando la media lungo le righe del
 ## Nota
 
 Per quanto possa sembrare controintuitivo, i calcoli nei vari cicli non servono a prendere elemento per elemento, bensì, quello che avviene è un prodotto tra matrici che contengono o parti del dataset grazie al loader o tutto il dataset stesso
+
+!![Image Description](/images/DF5E72E0-8610-452A-8434-02FE55D03AA6.jpg)
