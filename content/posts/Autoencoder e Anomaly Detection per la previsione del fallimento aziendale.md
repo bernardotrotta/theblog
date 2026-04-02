@@ -93,7 +93,7 @@ Precision e Recall sono metriche fondamentali per valutare i modelli di classifi
 
   $$R = \frac{TP}{TP+FN}$$
 
-!![Image Description](/images/Precision-Recall%201.png)
+![Image Description](/images/Precision-Recall%201.png)
 
 Nell'esempio sopra, vogliamo distinguere palline rosse da blu. Se il modello identifica 4 palline come rosse, ma solo 3 lo sono effettivamente su 5 totali:
 - $P = 3/4 = 75\%$
@@ -123,7 +123,7 @@ Nota di progetto, il modello fa schifo a classificare perché è strano che ci s
 
 Calcolando le metriche: $P = 1/4 = 25\%$ e $R = 1/1 = 100\%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.
 
-!![Image Description](/images/precision-recall-curve.png)
+![Image Description](/images/precision-recall-curve.png)
 
 Per trovare la soglia perfetta introduciamo l'**F1-score**, la media armonica tra precision e recall:
 

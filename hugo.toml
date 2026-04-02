@@ -85,7 +85,7 @@ pagination.pagerSize     = 10
     readOtherPosts = "Read other posts"
 
   [languages.en.params]
-    homeSubtitle  = "I'm <em>Bernardo</em> and this is my amazing website"
+    homeSubtitle  = "I'm Bernardo and this is my amazing website"
     
 
     [languages.en.params.logo]
@@ -103,7 +103,7 @@ pagination.pagerSize     = 10
     readOtherPosts = "Leggi altri articoli"
 
   [languages.it.params]
-    homeSubtitle  = "Mi chiamo *Bernardo* e questo è il mio fantastico sito"
+    homeSubtitle  = "Mi chiamo Bernardo e questo è il mio fantastico sito"
 
   [[languages.it.menu.main]]
     identifier = "about"

@@ -46,7 +46,7 @@ Il motivo risiede nella natura stessa dell&rsquo;anomaly detection tramite autoe
 Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la “normalità”. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.">
   <meta itemprop="datePublished" content="2026-03-31T19:30:00+00:00">
   <meta itemprop="dateModified" content="2026-03-31T19:30:00+00:00">
-  <meta itemprop="wordCount" content="1143">
+  <meta itemprop="wordCount" content="1141">
   <meta itemprop="image" content="https://example.org/">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@ $$P = \frac{TP}{TP+FP}$$</li>
 <p><strong>Recall</strong>: misura la capacità di individuare i casi positivi reali. Risponde alla domanda: <em>&ldquo;Quante delle aziende realmente in crisi sono state individuate?&rdquo;</em></p>
 $$R = \frac{TP}{TP+FN}$$</li>
 </ul>
-<p>!<img src="/images/Precision-Recall%201.png" alt="Image Description"></p>
+<p><img src="/images/Precision-Recall%201.png" alt="Image Description"></p>
 <p>Nell&rsquo;esempio sopra, vogliamo distinguere palline rosse da blu. Se il modello identifica 4 palline come rosse, ma solo 3 lo sono effettivamente su 5 totali:</p>
 <ul>
 <li>$P = 3/4 = 75%$</li>
@@ -302,7 +302,7 @@ $$R = \frac{TP}{TP+FN}$$</li>
 </table>
 <p>Nota di progetto, il modello fa schifo a classificare perché è strano che ci siano questi valori</p>
 <p>Calcolando le metriche: $P = 1/4 = 25%$ e $R = 1/1 = 100%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.</p>
-<p>!<img src="/images/precision-recall-curve.png" alt="Image Description"></p>
+<p><img src="/images/precision-recall-curve.png" alt="Image Description"></p>
 <p>Per trovare la soglia perfetta introduciamo l&rsquo;<strong>F1-score</strong>, la media armonica tra precision e recall:</p>
 $$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&rsquo;F1-score sarà alto solo se sia precision che recall sono soddisfacenti. Individuato il valore massimo di F1-score nella curva, utilizziamo l&rsquo;indice corrispondente per determinare la nostra threshold definitiva.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>optimal_idx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmax(f1_scores)
@@ -331,7 +331,7 @@ $$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&r
             <line x1="16" y1="17" x2="8" y2="17"></line>
             <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
-          1143 Words
+          1141 Words
         </p>
 
         <p>
