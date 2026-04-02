@@ -1,7 +1,7 @@
 ---
 date: 2026-03-31T19:30:00
 draft: "false"
-title: Autoencoder
+title: "Autoencoder e Anomaly Detection per la previsione del fallimento aziendale"
 ---
 
 ## Step 1: Suddivisione del dataset

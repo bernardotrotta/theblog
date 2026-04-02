@@ -10,7 +10,7 @@
         <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Autoencoder</title>
+            <title>Autoencoder e Anomaly Detection per la previsione del fallimento aziendale</title>
             <link>https://example.org/posts/autoencoder-e-anomaly-detection-per-la-previsione-del-fallimento-aziendale/</link>
             <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
             
