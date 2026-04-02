@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Posts on Hello Dude!</title>
+        <title>Posts on Hello there!</title>
         <link>https://example.org/posts/</link>
-        <description>Recent content in Posts on Hello Dude!</description>
+        <description>Recent content in Posts on Hello there!</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
@@ -11,10 +11,10 @@
         
         <item>
             <title>Autoencoder</title>
-            <link>https://example.org/posts/autoencoder-1/</link>
+            <link>https://example.org/posts/autoencoder-e-anomaly-detection-per-la-previsione-del-fallimento-aziendale/</link>
             <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
             
-            <guid>https://example.org/posts/autoencoder-1/</guid>
+            <guid>https://example.org/posts/autoencoder-e-anomaly-detection-per-la-previsione-del-fallimento-aziendale/</guid>
             <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;
 &lt;p&gt;La suddivisione del dataset è stata effettuata utilizzando la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo fondamentale è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1).&lt;/p&gt;
 &lt;p&gt;Il motivo risiede nella natura stessa dell&amp;rsquo;&lt;strong&gt;anomaly detection&lt;/strong&gt; tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.&lt;/p&gt;</description>
@@ -51,7 +51,7 @@ $$\text{Errore}_{batch} = \bar{\mathcal{L}}_i \cdot N_i$$<p>L&rsquo;errore cumul
 $$L_{total} = \sum_{i=1}^B \left( \bar{\mathcal{L}}_i \cdot N_i \right)$$<p>Al termine dell&rsquo;epoca, la perdita media finale ($L_{epoch}$) si ottiene dividendo l&rsquo;errore totale per il numero complessivo di campioni ($N_{total}$):</p>
 $$L_{epoch} = \frac{L_{total}}{N_{total}}$$<p>Questa logica può essere sintetizzata nella formula:</p>
 $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\right)$$<p>Nel ciclo di validazione, eseguito dopo ogni epoca, viene valutata la capacità del modello di ricostruire report sia di aziende sane che fallite. Terminata questa fase, è necessario determinare una <strong>threshold</strong> (soglia) per identificare le anomalie.</p>
-<p>L&rsquo;idea è calcolare gli <em>anomaly scores</em> sul set di validazione e analizzarne la distribuzione. Qui l&rsquo;anomaly score è definito come la <strong>loss media per ciascun record</strong>. Per ottenerlo, è stato usato un criterio di valutazione con <code>reduction='none'</code>, ottenendo una matrice con l&rsquo;errore associato a ogni feature per ogni elemento del batch. Calcolando la media lungo le righe, si ricava il vettore degli anomaly scores individuali.</p>
+<p>L&rsquo;idea è calcolare gli <em>anomaly scores</em> sul set di validazione e analizzarne la distribuzione. Qui l&rsquo;anomaly score è definito come la <strong>loss media per ciascun record</strong>. Per ottenerlo, è stato usato un criterio di valutazione con <code>reduction='none'</code>(spiegare cosa accade se lascio il default), ottenendo una matrice con l&rsquo;errore associato a ogni feature per ogni elemento del batch. Calcolando la media lungo le righe, si ricava il vettore degli anomaly scores individuali.</p>
 <h2 id="step-5-classificazione">Step 5: Classificazione</h2>
 <p>Il modello ricostruisce con precisione le aziende sane (errore basso), ma non quelle in fallimento. Se l&rsquo;errore di ricostruzione supera una certa soglia, l&rsquo;azienda viene classificata a rischio bancarotta. Il problema centrale è individuare la soglia ottimale. Le strategie testate sono tre:</p>
 <ol>
@@ -62,11 +62,11 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
 <h3 id="3-precision-recall-curve">3. Precision Recall Curve</h3>
 <p>Precision e Recall sono metriche fondamentali per valutare i modelli di classificazione:</p>
 <ul>
-<li><strong>Precision</strong>: indica l&rsquo;attendibilità del modello quando predice un&rsquo;anomalia. Risponde alla domanda: <em>&ldquo;Quando il modello segnala un&rsquo;anomalia, quanto spesso ha ragione?&rdquo;</em>
-
+<li>
+<p><strong>Precision</strong>: indica l&rsquo;attendibilità del modello quando predice un&rsquo;anomalia. Risponde alla domanda: <em>&ldquo;Quando il modello segnala un&rsquo;anomalia, quanto spesso ha ragione?&rdquo;</em></p>
 $$P = \frac{TP}{TP+FP}$$</li>
-<li><strong>Recall</strong>: misura la capacità di individuare i casi positivi reali. Risponde alla domanda: <em>&ldquo;Quante delle aziende realmente in crisi sono state individuate?&rdquo;</em>
-
+<li>
+<p><strong>Recall</strong>: misura la capacità di individuare i casi positivi reali. Risponde alla domanda: <em>&ldquo;Quante delle aziende realmente in crisi sono state individuate?&rdquo;</em></p>
 $$R = \frac{TP}{TP+FN}$$</li>
 </ul>
 <p>!<img src="/images/Precision-Recall%201.png" alt="Image Description"></p>
@@ -135,154 +135,12 @@ $$R = \frac{TP}{TP+FN}$$</li>
       </tr>
   </tbody>
 </table>
+<p>Nota di progetto, il modello fa schifo a classificare perché è strano che ci siano questi valori</p>
 <p>Calcolando le metriche: $P = 1/4 = 25%$ e $R = 1/1 = 100%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.</p>
 <p>!<img src="/images/precision-recall-curve.png" alt="Image Description"></p>
 <p>Per trovare la soglia perfetta introduciamo l&rsquo;<strong>F1-score</strong>, la media armonica tra precision e recall:</p>
 $$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&rsquo;F1-score sarà alto solo se sia precision che recall sono soddisfacenti. Individuato il valore massimo di F1-score nella curva, utilizziamo l&rsquo;indice corrispondente per determinare la nostra threshold definitiva.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>optimal_idx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmax(f1_scores)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>optimal_threshold <span style="color:#f92672">=</span> thresholds[optimal_idx]
-</span></span></code></pre></div><h2 id="note">Note</h2>
-<ul>
-<li><strong>F1 Score</strong>: Fondamentale per bilanciare il modello, specialmente con classi sbilanciate.</li>
-<li><strong>Scelta della metrica</strong>: In alcuni contesti potremmo preferire una Recall più alta (per non perdere nessuna azienda in crisi) anche a costo di una Precision inferiore.</li>
-<li><strong>Efficienza</strong>: Sebbene spiegati passo-passo, i calcoli avvengono tramite operazioni vettoriali tra matrici, sfruttando l&rsquo;efficienza computazionale dei tensori.</li>
-</ul>
-]]></content>
-        </item>
-        
-        <item>
-            <title>Autoencoder</title>
-            <link>https://example.org/posts/autoencoder/</link>
-            <pubDate>Tue, 31 Mar 2026 19:30:00 +0000</pubDate>
-            
-            <guid>https://example.org/posts/autoencoder/</guid>
-            <description>&lt;h2 id=&#34;step-1-suddivisione-del-dataset&#34;&gt;Step 1: Suddivisione del dataset&lt;/h2&gt;
-&lt;p&gt;La suddivisione del dataset è stata effettuata utilizzando la funzione &lt;code&gt;train_test_split&lt;/code&gt; del modulo &lt;code&gt;sklearn.model_selection&lt;/code&gt;, dopo aver caricato i dati con la libreria &lt;em&gt;pandas&lt;/em&gt;. Il primo passo fondamentale è stato separare i record delle aziende classificate come &amp;ldquo;sane&amp;rdquo; (valore 0 nella colonna &lt;code&gt;class&lt;/code&gt;) da quelle in fallimento (valore 1).&lt;/p&gt;
-&lt;p&gt;Il motivo risiede nella natura stessa dell&amp;rsquo;&lt;strong&gt;anomaly detection&lt;/strong&gt; tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la &amp;ldquo;normalità&amp;rdquo;. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.&lt;/p&gt;</description>
-            <content type="html"><![CDATA[<h2 id="step-1-suddivisione-del-dataset">Step 1: Suddivisione del dataset</h2>
-<p>La suddivisione del dataset è stata effettuata utilizzando la funzione <code>train_test_split</code> del modulo <code>sklearn.model_selection</code>, dopo aver caricato i dati con la libreria <em>pandas</em>. Il primo passo fondamentale è stato separare i record delle aziende classificate come &ldquo;sane&rdquo; (valore 0 nella colonna <code>class</code>) da quelle in fallimento (valore 1).</p>
-<p>Il motivo risiede nella natura stessa dell&rsquo;<strong>anomaly detection</strong> tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la &ldquo;normalità&rdquo;. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.</p>
-<p>Il dataset delle aziende sane è stato suddiviso destinando il 70% al <em>train set</em> e il restante 30% ripartito equamente tra <em>validation set</em> e <em>test set</em>. Poiché questi ultimi due devono contenere entrambe le categorie di aziende per una valutazione corretta, sono stati successivamente integrati con i dati delle aziende fallite e rimescolati. Per la valutazione finale, è stata preservata la colonna dei target per ogni set.</p>
-<h2 id="step-2-pulizia-dei-dati">Step 2: Pulizia dei dati</h2>
-<p>Per lavorare sul dataset <em>Polish Companies Bankruptcy</em> è stato necessario rimuovere i valori nulli dalle feature e procedere con una normalizzazione, fondamentale data la presenza di valori molto distanti dalla media.</p>
-<p>Per la gestione dei valori mancanti è stato utilizzato <strong>SimpleImputer</strong>, che di default sostituisce i dati nulli con il valore medio della colonna. Questa strategia è efficace per colonne numeriche; in caso di variabili categoriche, si potrebbero adottare strategie diverse come il <em>most frequent</em> o il <em>constant</em>.</p>
-<p>Per la normalizzazione è stato adottato lo <strong>StandardScaler</strong>, che esegue la trasformazione utilizzando lo <em>standard score</em>:</p>
-$$z= \frac{x-\mu}{\sigma}$$<p>Dove $\mu$ è il valore medio della colonna e $\sigma$ la deviazione standard (che indica quanto i dati siano dispersi rispetto alla media).</p>
-<p>In pratica, per ogni colonna viene calcolato lo <em>z-score</em> per ogni singolo valore. Il risultato è che ogni feature viene centrata intorno allo zero, ma <strong>non limitata</strong> in un intervallo predefinito (a differenza di quanto accadrebbe con un <strong>MinMaxScaler</strong>).</p>
-<p>È fondamentale che i parametri di <strong>SimpleImputer</strong> e <strong>StandardScaler</strong> siano calcolati esclusivamente sul set di <em>train</em> (<em>fitting</em>). La trasformazione viene poi applicata a tutti i set, ma utilizzando i parametri derivati dal training per evitare fenomeni di <strong>data leakage</strong>.</p>
-<h2 id="step-3-definizione-del-modello">Step 3: Definizione del modello</h2>
-<p><em>(Inserire qui i dettagli sull&rsquo;architettura del modello)</em></p>
-<h2 id="step-4-addestramento">Step 4: Addestramento</h2>
-<p>Data la dimensione del dataset, è stata utilizzata una strategia di <em>data loading</em> per suddividere gli esempi in <em>batch</em>, ottimizzando l&rsquo;uso della memoria. Durante l&rsquo;addestramento (esteso per 100 epoche), i batch vengono elaborati dal modello: le feature vengono compresse nello spazio latente, decodificate per la ricostruzione e infine confrontate con i valori di ingresso per calcolare la <em>loss</em>.</p>
-<p>Come ottimizzatore è stato scelto <strong>AdamW</strong>, mentre come funzione di costo il <strong>Mean Squared Error (MSE)</strong>. Il calcolo della perdita avvia poi la <em>backpropagation</em> per l&rsquo;aggiornamento dei pesi.</p>
-<p>Per monitorare il processo, viene calcolato il valore medio della perdita per ogni epoca. Nello specifico, <code>features.size(0)</code> restituisce il numero di campioni $N_i$ nel batch corrente.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> features, labels <span style="color:#f92672">in</span> train_loader:
-</span></span><span style="display:flex;"><span>        features <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>to(device)
-</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
-</span></span><span style="display:flex;"><span>        reconstructed <span style="color:#f92672">=</span> autoencoder(features)
-</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> criterion_train(reconstructed, features)
-</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
-</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
-</span></span><span style="display:flex;"><span>        running_train_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item() <span style="color:#f92672">*</span> features<span style="color:#f92672">.</span>size(<span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    epoch_train_loss <span style="color:#f92672">=</span> running_train_loss <span style="color:#f92672">/</span> len(train_loader<span style="color:#f92672">.</span>dataset)
-</span></span><span style="display:flex;"><span>    training_losses<span style="color:#f92672">.</span>append(epoch_train_loss)
-</span></span></code></pre></div><p>La variabile <code>running_train_loss</code> accumula l&rsquo;errore totale dell&rsquo;epoca. Poiché <code>loss.item()</code> restituisce la perdita media del batch ($\bar{\mathcal{L}}_i$), moltiplichiamo questo valore per la dimensione del batch ($N_i$) per ottenere la somma degli errori del batch:</p>
-$$\text{Errore}_{batch} = \bar{\mathcal{L}}_i \cdot N_i$$<p>L&rsquo;errore cumulativo totale ($L_{total}$) è la somma degli errori di tutti i $B$ batch:</p>
-$$L_{total} = \sum_{i=1}^B \left( \bar{\mathcal{L}}_i \cdot N_i \right)$$<p>Al termine dell&rsquo;epoca, la perdita media finale ($L_{epoch}$) si ottiene dividendo l&rsquo;errore totale per il numero complessivo di campioni ($N_{total}$):</p>
-$$L_{epoch} = \frac{L_{total}}{N_{total}}$$<p>Questa logica può essere sintetizzata nella formula:</p>
-$$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\right)$$<p>Nel ciclo di validazione, eseguito dopo ogni epoca, viene valutata la capacità del modello di ricostruire report sia di aziende sane che fallite. Terminata questa fase, è necessario determinare una <strong>threshold</strong> (soglia) per identificare le anomalie.</p>
-<p>L&rsquo;idea è calcolare gli <em>anomaly scores</em> sul set di validazione e analizzarne la distribuzione. Qui l&rsquo;anomaly score è definito come la <strong>loss media per ciascun record</strong>. Per ottenerlo, è stato usato un criterio di valutazione con <code>reduction='none'</code>, ottenendo una matrice con l&rsquo;errore associato a ogni feature per ogni elemento del batch. Calcolando la media lungo le righe, si ricava il vettore degli anomaly scores individuali.</p>
-<h2 id="step-5-classificazione">Step 5: Classificazione</h2>
-<p>Il modello ricostruisce con precisione le aziende sane (errore basso), ma non quelle in fallimento. Se l&rsquo;errore di ricostruzione supera una certa soglia, l&rsquo;azienda viene classificata a rischio bancarotta. Il problema centrale è individuare la soglia ottimale. Le strategie testate sono tre:</p>
-<ol>
-<li>Percentile</li>
-<li>Gaussian Fit</li>
-<li>Precision Recall Curve</li>
-</ol>
-<h3 id="3-precision-recall-curve">3. Precision Recall Curve</h3>
-<p>Precision e Recall sono metriche fondamentali per valutare i modelli di classificazione:</p>
-<ul>
-<li><strong>Precision</strong>: indica l&rsquo;attendibilità del modello quando predice un&rsquo;anomalia. Risponde alla domanda: <em>&ldquo;Quando il modello segnala un&rsquo;anomalia, quanto spesso ha ragione?&rdquo;</em>
-
-$$P = \frac{TP}{TP+FP}$$</li>
-<li><strong>Recall</strong>: misura la capacità di individuare i casi positivi reali. Risponde alla domanda: <em>&ldquo;Quante delle aziende realmente in crisi sono state individuate?&rdquo;</em>
-
-$$R = \frac{TP}{TP+FN}$$</li>
-</ul>
-<p>!<img src="/images/Precision-Recall%201.png" alt="Image Description"></p>
-<p>Nell&rsquo;esempio sopra, vogliamo distinguere palline rosse da blu. Se il modello identifica 4 palline come rosse, ma solo 3 lo sono effettivamente su 5 totali:</p>
-<ul>
-<li>$P = 3/4 = 75%$</li>
-<li>$R = 3/5 = 60%$</li>
-</ul>
-<p>È possibile variare la soglia che divide i positivi dai negativi per bilanciare precision e recall. Questo compito è affidato alla funzione <code>precision_recall_curve()</code> di <code>sklearn</code>. Confrontando gli score calcolati (le loss) con i valori di classe reali, cerchiamo l&rsquo;errore di ricostruzione ideale per definire il fallimento.</p>
-<p>Per esemplificare, analizziamo 4 record:</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-      </tr>
-  </tbody>
-</table>
-<p>Scegliendo come soglia il primo valore di loss ($0.0388$), tutti i record con loss $\ge 0.0388$ vengono classificati come anomalie ($\hat{y}=1$):</p>
-<table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-          <th style="text-align: left">Classificazione ($\hat{y}$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-          <td style="text-align: left">1</td>
-      </tr>
-  </tbody>
-</table>
-<p>Calcolando le metriche: $P = 1/4 = 25%$ e $R = 1/1 = 100%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.</p>
-<p>!<img src="/images/precision-recall-curve.png" alt="Image Description"></p>
-<p>Per trovare la soglia perfetta introduciamo l&rsquo;<strong>F1-score</strong>, la media armonica tra precision e recall:</p>
-$$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&rsquo;F1-score sarà alto solo se sia precision che recall sono soddisfacenti. Individuato il valore massimo di F1-score nella curva, utilizziamo l&rsquo;indice corrispondente per determinare la nostra threshold definitiva.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>optimal_idx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmax(f1_scores)
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>optimal_threshold <span style="color:#f92672">=</span> thresholds[optimal_idx]
 </span></span></code></pre></div><h2 id="note">Note</h2>
 <ul>

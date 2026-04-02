@@ -6,7 +6,7 @@ title: Autoencoder
 
 ## Step 1: Suddivisione del dataset
 
-La suddivisione del dataset è stata effettuata utilizzando la funzione `train_test_split` del modulo `sklearn.model_selection`, dopo aver caricato i dati con la libreria *pandas*. Il primo passo fondamentale è stato separare i record delle aziende classificate come "sane" (valore 0 nella colonna `class`) da quelle in fallimento (valore 1). 
+La suddivisione del dataset è stata effettuata utilizzando la funzione `train_test_split` del modulo `sklearn.model_selection`, dopo aver caricato i dati con la libreria *pandas*. Il primo passo fondamentale è stato separare i record delle aziende classificate come "sane" (valore 0 nella colonna `class`) da quelle in fallimento (valore 1).
 
 Il motivo risiede nella natura stessa dell'**anomaly detection** tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la "normalità". In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.
 
@@ -34,7 +34,7 @@ In pratica, per ogni colonna viene calcolato lo *z-score* per ogni singolo valor
 
 ## Step 4: Addestramento
 
-Data la dimensione del dataset, è stata utilizzata una strategia di *data loading* per suddividere gli esempi in *batch*, ottimizzando l'uso della memoria. Durante l'addestramento (esteso per 100 epoche), i batch vengono elaborati dal modello: le feature vengono compresse nello spazio latente, decodificate per la ricostruzione e infine confrontate con i valori di ingresso per calcolare la *loss*. 
+Data la dimensione del dataset, è stata utilizzata una strategia di *data loading* per suddividere gli esempi in *batch*, ottimizzando l'uso della memoria. Durante l'addestramento (esteso per 100 epoche), i batch vengono elaborati dal modello: le feature vengono compresse nello spazio latente, decodificate per la ricostruzione e infine confrontate con i valori di ingresso per calcolare la *loss*.
 
 Come ottimizzatore è stato scelto **AdamW**, mentre come funzione di costo il **Mean Squared Error (MSE)**. Il calcolo della perdita avvia poi la *backpropagation* per l'aggiornamento dei pesi.
 
@@ -72,7 +72,7 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
 
 Nel ciclo di validazione, eseguito dopo ogni epoca, viene valutata la capacità del modello di ricostruire report sia di aziende sane che fallite. Terminata questa fase, è necessario determinare una **threshold** (soglia) per identificare le anomalie.
 
-L'idea è calcolare gli *anomaly scores* sul set di validazione e analizzarne la distribuzione. Qui l'anomaly score è definito come la **loss media per ciascun record**. Per ottenerlo, è stato usato un criterio di valutazione con `reduction='none'`, ottenendo una matrice con l'errore associato a ogni feature per ogni elemento del batch. Calcolando la media lungo le righe, si ricava il vettore degli anomaly scores individuali.
+L'idea è calcolare gli *anomaly scores* sul set di validazione e analizzarne la distribuzione. Qui l'anomaly score è definito come la **loss media per ciascun record**. Per ottenerlo, è stato usato un criterio di valutazione con `reduction='none'`(spiegare cosa accade se lascio il default), ottenendo una matrice con l'errore associato a ogni feature per ogni elemento del batch. Calcolando la media lungo le righe, si ricava il vettore degli anomaly scores individuali.
 
 ## Step 5: Classificazione
 
@@ -86,8 +86,11 @@ Il modello ricostruisce con precisione le aziende sane (errore basso), ma non qu
 
 Precision e Recall sono metriche fondamentali per valutare i modelli di classificazione:
 - **Precision**: indica l'attendibilità del modello quando predice un'anomalia. Risponde alla domanda: *"Quando il modello segnala un'anomalia, quanto spesso ha ragione?"*
+
   $$P = \frac{TP}{TP+FP}$$
+
 - **Recall**: misura la capacità di individuare i casi positivi reali. Risponde alla domanda: *"Quante delle aziende realmente in crisi sono state individuate?"*
+
   $$R = \frac{TP}{TP+FN}$$
 
 !![Image Description](/images/Precision-Recall%201.png)
@@ -116,6 +119,8 @@ Scegliendo come soglia il primo valore di loss ($0.0388$), tutti i record con lo
 | 0 | 0.2076 | 1 |
 | 1 | 0.1097 | 1 |
 
+Nota di progetto, il modello fa schifo a classificare perché è strano che ci siano questi valori
+
 Calcolando le metriche: $P = 1/4 = 25\%$ e $R = 1/1 = 100\%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.
 
 !![Image Description](/images/precision-recall-curve.png)
@@ -128,7 +133,6 @@ La media armonica penalizza i valori estremi: l'F1-score sarà alto solo se sia 
 
 ```python
 optimal_idx = np.argmax(f1_scores)
-
 optimal_threshold = thresholds[optimal_idx]
 ```
 

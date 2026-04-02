@@ -49,11 +49,11 @@ pagination.pagerSize     = 10
     copyright = true
     author = true
 
-    topText = []
-    bottomText = [
-      "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
-      "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
-    ]
+    # topText = []
+    # bottomText = [
+    #   "Powered by <a href=\"http://gohugo.io\">Hugo</a>",
+    #   "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
+    # ]
 
 [params.Logo]
   logoText = "Bernardo Trotta"
@@ -68,6 +68,10 @@ pagination.pagerSize     = 10
   name = "github"
   url = "https://github.com/bernardotrotta"
 
+[[params.social]]
+  name = "linkedin"
+  url = "https://linkedin.com/in/bernardo-trotta/"  
+
 [taxonomies]
     category = "blog"
     tag      = "tags"
@@ -75,13 +79,14 @@ pagination.pagerSize     = 10
 
 [languages]
   [languages.en]
-    title = "Hello Dude!"
+    title = "Hello there!"
     keywords = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     readOtherPosts = "Read other posts"
 
   [languages.en.params]
-    subtitle  = "ciao a tutti, sono Bernardo Trotta e benvenuti sul mio fantastico sito"
+    homeSubtitle  = "I'm <em>Bernardo</em> and this is my amazing website"
+    
 
     [languages.en.params.logo]
       logoText = "Bernardo Trotta"
@@ -92,13 +97,13 @@ pagination.pagerSize     = 10
     # alt = "Your example logo alt text"
 
   [languages.it]
-    title = "Benvenuto bro"
+    title = "Ciao!"
     keywords = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     readOtherPosts = "Leggi altri articoli"
 
   [languages.it.params]
-    homeSubtitle  = "Ciao a tutti, sono Bernardo Trotta e benvenuti sul mio fantastico sito"
+    homeSubtitle  = "Mi chiamo *Bernardo* e questo è il mio fantastico sito"
 
   [[languages.it.menu.main]]
     identifier = "about"

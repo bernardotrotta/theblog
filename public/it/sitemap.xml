@@ -2,18 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.org/it/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/"
-                />
-  </url><url>
     <loc>https://example.org/it/blog/</loc>
     <xhtml:link
                 rel="alternate"
@@ -24,6 +12,18 @@
                 rel="alternate"
                 hreflang="it"
                 href="https://example.org/it/blog/"
+                />
+  </url><url>
+    <loc>https://example.org/it/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://example.org/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://example.org/it/"
                 />
   </url><url>
     <loc>https://example.org/it/series/</loc>
