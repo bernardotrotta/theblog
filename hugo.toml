@@ -29,6 +29,7 @@ pagination.pagerSize     = 10
 
   # Enable sharing buttons, if you like
   enableSharingButtons = true
+  enableReadingTime = true
   
   # Show a global language switcher in the navigation bar
   enableGlobalLanguageMenu = true
