@@ -95,7 +95,24 @@ Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencod
   };
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    mediumZoom('.post-content img', {
+      margin: 24,
+      background: 'rgba(25, 25, 25, 0.9)'
+    });
+  });
+</script>
+
 <style>
+  .medium-zoom-overlay {
+    z-index: 9999;
+  }
+  .medium-zoom-image--opened {
+    z-index: 10000;
+  }
+
   .post-content table {
     display: block;
     width: fit-content;
@@ -111,6 +128,7 @@ Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencod
     display: block;
     margin-left: auto !important;
     margin-right: auto !important;
+    cursor: zoom-in;
   }
 </style>
 
