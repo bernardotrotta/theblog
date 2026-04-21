@@ -79,10 +79,10 @@ L'idea è calcolare gli *anomaly scores* sul set di validazione e analizzarne la
 Il modello ricostruisce con precisione le aziende sane (errore basso), ma non quelle in fallimento. Se l'errore di ricostruzione supera una certa soglia, l'azienda viene classificata a rischio bancarotta. Il problema centrale è individuare la soglia ottimale. Le strategie testate sono tre:
 
 1. Percentile
-2. Gaussian Fit
-3. Precision Recall Curve
+2. Precision Recall Curve
+3. Modello matematico
 
-### 3. Precision Recall Curve
+### 1. Precision Recall Curve
 
 Precision e Recall sono metriche fondamentali per valutare i modelli di classificazione:
 - **Precision**: indica l'attendibilità del modello quando predice un'anomalia. Risponde alla domanda: *"Quando il modello segnala un'anomalia, quanto spesso ha ragione?"*
@@ -104,11 +104,11 @@ Nell'esempio sopra, vogliamo distinguere palline rosse da blu. Se il modello ide
 Per esemplificare, analizziamo 4 record:
 
 | Target ($y$) | Loss ($y^*$) |
-| :--- | :--- |
-| 0 | 0.0388 |
-| 0 | 0.1552 |
-| 0 | 0.2076 |
-| 1 | 0.1097 |
+| :----------- | :----------- |
+| 0            | 0.0388       |
+| 0            | 0.1552       |
+| 0            | 0.2076       |
+| 1            | 0.1097       |
 
 Scegliendo come soglia il primo valore di loss ($0.0388$), tutti i record con loss $\ge 0.0388$ vengono classificati come anomalie ($\hat{y}=1$):
 
@@ -135,6 +135,88 @@ La media armonica penalizza i valori estremi: l'F1-score sarà alto solo se sia 
 optimal_idx = np.argmax(f1_scores)
 optimal_threshold = thresholds[optimal_idx]
 ```
+
+### 2. Percentile
+
+Un'altra strategia adottata, di natura non supervisionata, è quella del percentile. Analizzando la distribuzione degli errori di ricostruzione tramite un istogramma, è possibile definire una soglia per "tagliare" la coda della distribuzione, ovvero la porzione di risultati che più si allontana dalla media verso i valori alti; è proprio lì che, molto probabilmente, si nascondono le anomalie.
+![Image Description](/images/hist-1.png)
+Un'idea per individuare la soglia ideale consiste nel valutare i valori di precision, recall e F1-score iterativamente, testando diversi percentili (ad esempio dall'80% al 99%) per trovare quello ottimale.
+
+### Valutazione
+
+Valutate le soglie seguendo le due diverse strategie è stato eseguito un report di confronto per valutare i risultati ottenuti. Lo step finale è stato quindi quello di valutare le soglie sul test set
+
+```python
+autoencoder.eval()
+test_anomaly_scores = []
+test_true_labels = []
+
+with torch.no_grad():
+    for features, labels in test_loader:
+        features = features.to(device)
+        reconstructed = autoencoder(features)
+        loss_matrix = criterion_eval(reconstructed, features)
+        transaction_scores = loss_matrix.mean(dim=1)
+        test_anomaly_scores.append(transaction_scores)
+        test_true_labels.append(labels)
+
+test_anomaly_scores = torch.cat(test_anomaly_scores).cpu().numpy()
+test_true_labels = torch.cat(test_true_labels).cpu().numpy()
+
+predictions_perecentile = (test_anomaly_scores > threshold).astype(int)     
+predictions_argmax = (test_anomaly_scores > optimal_threshold).astype(int)   
+```
+
+Nello specifico, utilizzando il calcolo della soglia con il percentile i risultati sono:
+
+```python
+precision    recall  f1-score   support
+
+           0       0.87      0.97      0.92      6198
+           1       0.42      0.15      0.22      1046
+
+    accuracy                           0.85      7244
+   macro avg       0.65      0.56      0.57      7244
+weighted avg       0.81      0.85      0.82      7244
+```
+
+I risultati ottenuti invece sembrano più promettenti utilizzando la strategia dell'F1-Score
+
+```python
+precision    recall  f1-score   support
+
+           0       0.92      0.86      0.89      6198
+           1       0.41      0.55      0.47      1046
+
+    accuracy                           0.82      7244
+   macro avg       0.66      0.71      0.68      7244
+weighted avg       0.85      0.82      0.83      7244
+```
+
+## 3. Modello matematico
+
+Analizzando il lavoro con il mio relatore, è emersa l'opportunità di calcolare la soglia (*threshold*) adottando un approccio realmente semi-supervisionato. L'idea consiste nel variare il set su cui viene calcolata la soglia, utilizzando esclusivamente aziende "sane" ed escludendo gli errori di ricostruzione più elevati all'interno di questo gruppo.
+
+Tuttavia, non potendo impiegare il *training set*, poiché il modello risulterebbe già ottimizzato nella ricostruzione di dati noti, ho modificato il criterio di suddivisione del dataset, creando un ulteriore set di sole aziende sane dedicato esclusivamente alla rilevazione della soglia. Questo approccio presenta sia vantaggi che svantaggi. Il vantaggio principale risiede nella coerenza statistica: la soglia riflette con precisione la distribuzione dell'errore appresa dal modello durante la fase di *tuning*. Tuttavia, ciò implica che il modello sia estremamente ottimizzato per minimizzare l'errore proprio sui dati di addestramento. Di conseguenza, l'errore di ricostruzione risulterà fisiologicamente più basso rispetto a quello di qualsiasi nuovo dato (anche se sano), con il rischio di generare numerosi falsi positivi in fase di produzione.
+
+Una volta ottenuta la distribuzione dell'errore, su suggerimento del docente, ho provato a modellare i dati tramite una distribuzione gaussiana, definendo la soglia come: valore medio + 2 deviazioni standard. Questo approccio diretto ha però evidenziato un limite: data la natura asimmetrica e fortemente *skewed* della distribuzione, il modello gaussiano non riesce a rappresentarne correttamente l'andamento, rischiando di produrre una soglia non coerente con la statistica degli errori rilevati. Si è passati quindi a modellare la distribuzione utilizzando una log-normale.
+
+### Distribuzione log-normale
+
+Una variabile aleatoria $Y$ segue una distribuzione log-normale se il suo logaritmo naturale $X = \ln(Y)$ segue una distribuzione normale: $Y = e^X$, dove $X \sim N(\mu, \sigma^2)$. Il dominio si restringe, quindi, ai valori strettamente positivi $(0, +\infty)$.
+
+Questa scelta risolve diverse criticità:
+
+1. **Gestione del dominio positivo:** come si nota dall'immagine, i dati partono da zero con una crescita immediata. La gaussiana, nel tentativo di adattarsi ai dati, "sconfina" nell'area negativa (a sinistra dello zero), dove però non sono presenti osservazioni. Tale "dispersione" di probabilità nell'area negativa sottrae altezza alla campana nel quadrante positivo. La log-normale, essendo definita solo per $x > 0$, concentra tutta la sua massa dove effettivamente risiede l'informazione.
+2. **Adattamento della coda:** la distribuzione presenta una "coda" che si estende fino a 2.0.
+    - **Nella Normale:** la deviazione standard $\sigma$ viene calcolata pesando la distanza dei punti dalla media. Gli eventuali *outlier* presenti nella coda tendono a incrementare il valore di $\sigma$, allargando la campana. Poiché l'area totale sottesa alla curva deve essere pari a 1, una campana più larga risulta necessariamente più bassa.
+    - **Nella Log-normale:** esiste un parametro specifico di **forma** (*shape*) che gestisce l'estensione della coda senza influenzare drasticamente la posizione o l'altezza del picco principale.
+
+![Image Description](/images/output.png)
+
+Ma perché preferire un modello matematico a un semplice percentile calcolato sui dati grezzi? Un approccio parametrico permette di astrarre il principio probabilistico della distribuzione, riducendo la dipendenza dai singoli valori e rendendo il risultato meno sensibile a eventuali dati anomali (*noise*).
+
+Di conseguenza, anche la modalità di calcolo della soglia cambia: invece di calcolare il percentile sul dataset, lo si ricava dal modello tramite la funzione *Percent Point Function* (PPF), che determina il punto in cui cadrebbe quel percentile se i dati seguissero fedelmente la distribuzione teorica.
 
 ## Note
 

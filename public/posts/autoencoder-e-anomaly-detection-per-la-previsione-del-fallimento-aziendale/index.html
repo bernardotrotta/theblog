@@ -46,7 +46,7 @@ Il motivo risiede nella natura stessa dell&rsquo;anomaly detection tramite autoe
 Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la “normalità”. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.">
   <meta itemprop="datePublished" content="2026-03-31T19:30:00+00:00">
   <meta itemprop="dateModified" content="2026-03-31T19:30:00+00:00">
-  <meta itemprop="wordCount" content="1141">
+  <meta itemprop="wordCount" content="1931">
   <meta itemprop="image" content="https://example.org/">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -189,7 +189,7 @@ Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencod
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            6 minutes
+            10 minutes
           
 
           
@@ -246,10 +246,10 @@ $$\text{running\_test\_loss} = \sum_{i=1}^B \left(\sum_{j=1}^{N_{i}} loss_{i,j}\
 <p>Il modello ricostruisce con precisione le aziende sane (errore basso), ma non quelle in fallimento. Se l&rsquo;errore di ricostruzione supera una certa soglia, l&rsquo;azienda viene classificata a rischio bancarotta. Il problema centrale è individuare la soglia ottimale. Le strategie testate sono tre:</p>
 <ol>
 <li>Percentile</li>
-<li>Gaussian Fit</li>
 <li>Precision Recall Curve</li>
+<li>Modello matematico</li>
 </ol>
-<h3 id="3-precision-recall-curve">3. Precision Recall Curve</h3>
+<h3 id="1-precision-recall-curve">1. Precision Recall Curve</h3>
 <p>Precision e Recall sono metriche fondamentali per valutare i modelli di classificazione:</p>
 <ul>
 <li>
@@ -332,7 +332,68 @@ $$R = \frac{TP}{TP+FN}$$</li>
 $$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&rsquo;F1-score sarà alto solo se sia precision che recall sono soddisfacenti. Individuato il valore massimo di F1-score nella curva, utilizziamo l&rsquo;indice corrispondente per determinare la nostra threshold definitiva.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>optimal_idx <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argmax(f1_scores)
 </span></span><span style="display:flex;"><span>optimal_threshold <span style="color:#f92672">=</span> thresholds[optimal_idx]
-</span></span></code></pre></div><h2 id="note">Note</h2>
+</span></span></code></pre></div><h3 id="2-percentile">2. Percentile</h3>
+<p>Un&rsquo;altra strategia adottata, di natura non supervisionata, è quella del percentile. Analizzando la distribuzione degli errori di ricostruzione tramite un istogramma, è possibile definire una soglia per &ldquo;tagliare&rdquo; la coda della distribuzione, ovvero la porzione di risultati che più si allontana dalla media verso i valori alti; è proprio lì che, molto probabilmente, si nascondono le anomalie.
+<img src="/images/hist-1.png" alt="Image Description">
+Un&rsquo;idea per individuare la soglia ideale consiste nel valutare i valori di precision, recall e F1-score iterativamente, testando diversi percentili (ad esempio dall'80% al 99%) per trovare quello ottimale.</p>
+<h3 id="valutazione">Valutazione</h3>
+<p>Valutate le soglie seguendo le due diverse strategie è stato eseguito un report di confronto per valutare i risultati ottenuti. Lo step finale è stato quindi quello di valutare le soglie sul test set</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>autoencoder<span style="color:#f92672">.</span>eval()
+</span></span><span style="display:flex;"><span>test_anomaly_scores <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>test_true_labels <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> features, labels <span style="color:#f92672">in</span> test_loader:
+</span></span><span style="display:flex;"><span>        features <span style="color:#f92672">=</span> features<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>        reconstructed <span style="color:#f92672">=</span> autoencoder(features)
+</span></span><span style="display:flex;"><span>        loss_matrix <span style="color:#f92672">=</span> criterion_eval(reconstructed, features)
+</span></span><span style="display:flex;"><span>        transaction_scores <span style="color:#f92672">=</span> loss_matrix<span style="color:#f92672">.</span>mean(dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        test_anomaly_scores<span style="color:#f92672">.</span>append(transaction_scores)
+</span></span><span style="display:flex;"><span>        test_true_labels<span style="color:#f92672">.</span>append(labels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_anomaly_scores <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cat(test_anomaly_scores)<span style="color:#f92672">.</span>cpu()<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>test_true_labels <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cat(test_true_labels)<span style="color:#f92672">.</span>cpu()<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>predictions_perecentile <span style="color:#f92672">=</span> (test_anomaly_scores <span style="color:#f92672">&gt;</span> threshold)<span style="color:#f92672">.</span>astype(int)     
+</span></span><span style="display:flex;"><span>predictions_argmax <span style="color:#f92672">=</span> (test_anomaly_scores <span style="color:#f92672">&gt;</span> optimal_threshold)<span style="color:#f92672">.</span>astype(int)   
+</span></span></code></pre></div><p>Nello specifico, utilizzando il calcolo della soglia con il percentile i risultati sono:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>precision    recall  f1<span style="color:#f92672">-</span>score   support
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>           <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0.87</span>      <span style="color:#ae81ff">0.97</span>      <span style="color:#ae81ff">0.92</span>      <span style="color:#ae81ff">6198</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">0.42</span>      <span style="color:#ae81ff">0.15</span>      <span style="color:#ae81ff">0.22</span>      <span style="color:#ae81ff">1046</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    accuracy                           <span style="color:#ae81ff">0.85</span>      <span style="color:#ae81ff">7244</span>
+</span></span><span style="display:flex;"><span>   macro avg       <span style="color:#ae81ff">0.65</span>      <span style="color:#ae81ff">0.56</span>      <span style="color:#ae81ff">0.57</span>      <span style="color:#ae81ff">7244</span>
+</span></span><span style="display:flex;"><span>weighted avg       <span style="color:#ae81ff">0.81</span>      <span style="color:#ae81ff">0.85</span>      <span style="color:#ae81ff">0.82</span>      <span style="color:#ae81ff">7244</span>
+</span></span></code></pre></div><p>I risultati ottenuti invece sembrano più promettenti utilizzando la strategia dell&rsquo;F1-Score</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>precision    recall  f1<span style="color:#f92672">-</span>score   support
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>           <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0.92</span>      <span style="color:#ae81ff">0.86</span>      <span style="color:#ae81ff">0.89</span>      <span style="color:#ae81ff">6198</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#ae81ff">1</span>       <span style="color:#ae81ff">0.41</span>      <span style="color:#ae81ff">0.55</span>      <span style="color:#ae81ff">0.47</span>      <span style="color:#ae81ff">1046</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    accuracy                           <span style="color:#ae81ff">0.82</span>      <span style="color:#ae81ff">7244</span>
+</span></span><span style="display:flex;"><span>   macro avg       <span style="color:#ae81ff">0.66</span>      <span style="color:#ae81ff">0.71</span>      <span style="color:#ae81ff">0.68</span>      <span style="color:#ae81ff">7244</span>
+</span></span><span style="display:flex;"><span>weighted avg       <span style="color:#ae81ff">0.85</span>      <span style="color:#ae81ff">0.82</span>      <span style="color:#ae81ff">0.83</span>      <span style="color:#ae81ff">7244</span>
+</span></span></code></pre></div><h2 id="3-modello-matematico">3. Modello matematico</h2>
+<p>Analizzando il lavoro con il mio relatore, è emersa l&rsquo;opportunità di calcolare la soglia (<em>threshold</em>) adottando un approccio realmente semi-supervisionato. L&rsquo;idea consiste nel variare il set su cui viene calcolata la soglia, utilizzando esclusivamente aziende &ldquo;sane&rdquo; ed escludendo gli errori di ricostruzione più elevati all&rsquo;interno di questo gruppo.</p>
+<p>Tuttavia, non potendo impiegare il <em>training set</em>, poiché il modello risulterebbe già ottimizzato nella ricostruzione di dati noti, ho modificato il criterio di suddivisione del dataset, creando un ulteriore set di sole aziende sane dedicato esclusivamente alla rilevazione della soglia. Questo approccio presenta sia vantaggi che svantaggi. Il vantaggio principale risiede nella coerenza statistica: la soglia riflette con precisione la distribuzione dell&rsquo;errore appresa dal modello durante la fase di <em>tuning</em>. Tuttavia, ciò implica che il modello sia estremamente ottimizzato per minimizzare l&rsquo;errore proprio sui dati di addestramento. Di conseguenza, l&rsquo;errore di ricostruzione risulterà fisiologicamente più basso rispetto a quello di qualsiasi nuovo dato (anche se sano), con il rischio di generare numerosi falsi positivi in fase di produzione.</p>
+<p>Una volta ottenuta la distribuzione dell&rsquo;errore, su suggerimento del docente, ho provato a modellare i dati tramite una distribuzione gaussiana, definendo la soglia come: valore medio + 2 deviazioni standard. Questo approccio diretto ha però evidenziato un limite: data la natura asimmetrica e fortemente <em>skewed</em> della distribuzione, il modello gaussiano non riesce a rappresentarne correttamente l&rsquo;andamento, rischiando di produrre una soglia non coerente con la statistica degli errori rilevati. Si è passati quindi a modellare la distribuzione utilizzando una log-normale.</p>
+<h3 id="distribuzione-log-normale">Distribuzione log-normale</h3>
+<p>Una variabile aleatoria $Y$ segue una distribuzione log-normale se il suo logaritmo naturale $X = \ln(Y)$ segue una distribuzione normale: $Y = e^X$, dove $X \sim N(\mu, \sigma^2)$. Il dominio si restringe, quindi, ai valori strettamente positivi $(0, +\infty)$.</p>
+<p>Questa scelta risolve diverse criticità:</p>
+<ol>
+<li><strong>Gestione del dominio positivo:</strong> come si nota dall&rsquo;immagine, i dati partono da zero con una crescita immediata. La gaussiana, nel tentativo di adattarsi ai dati, &ldquo;sconfina&rdquo; nell&rsquo;area negativa (a sinistra dello zero), dove però non sono presenti osservazioni. Tale &ldquo;dispersione&rdquo; di probabilità nell&rsquo;area negativa sottrae altezza alla campana nel quadrante positivo. La log-normale, essendo definita solo per $x &gt; 0$, concentra tutta la sua massa dove effettivamente risiede l&rsquo;informazione.</li>
+<li><strong>Adattamento della coda:</strong> la distribuzione presenta una &ldquo;coda&rdquo; che si estende fino a 2.0.
+<ul>
+<li><strong>Nella Normale:</strong> la deviazione standard $\sigma$ viene calcolata pesando la distanza dei punti dalla media. Gli eventuali <em>outlier</em> presenti nella coda tendono a incrementare il valore di $\sigma$, allargando la campana. Poiché l&rsquo;area totale sottesa alla curva deve essere pari a 1, una campana più larga risulta necessariamente più bassa.</li>
+<li><strong>Nella Log-normale:</strong> esiste un parametro specifico di <strong>forma</strong> (<em>shape</em>) che gestisce l&rsquo;estensione della coda senza influenzare drasticamente la posizione o l&rsquo;altezza del picco principale.</li>
+</ul>
+</li>
+</ol>
+<p><img src="/images/output.png" alt="Image Description"></p>
+<p>Ma perché preferire un modello matematico a un semplice percentile calcolato sui dati grezzi? Un approccio parametrico permette di astrarre il principio probabilistico della distribuzione, riducendo la dipendenza dai singoli valori e rendendo il risultato meno sensibile a eventuali dati anomali (<em>noise</em>).</p>
+<p>Di conseguenza, anche la modalità di calcolo della soglia cambia: invece di calcolare il percentile sul dataset, lo si ricava dal modello tramite la funzione <em>Percent Point Function</em> (PPF), che determina il punto in cui cadrebbe quel percentile se i dati seguissero fedelmente la distribuzione teorica.</p>
+<h2 id="note">Note</h2>
 <ul>
 <li><strong>F1 Score</strong>: Fondamentale per bilanciare il modello, specialmente con classi sbilanciate.</li>
 <li><strong>Scelta della metrica</strong>: In alcuni contesti potremmo preferire una Recall più alta (per non perdere nessuna azienda in crisi) anche a costo di una Precision inferiore.</li>
@@ -356,7 +417,7 @@ $$F1=2\frac{P\cdot R}{P+R}$$<p>La media armonica penalizza i valori estremi: l&r
             <line x1="16" y1="17" x2="8" y2="17"></line>
             <polyline points="10 9 9 9 8 9"></polyline>
           </svg>
-          1141 Words
+          1931 Words
         </p>
 
         <p>
