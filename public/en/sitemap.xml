@@ -31,13 +31,13 @@
     <loc>https://example.org/blog/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/blog/"
+                hreflang="en-us"
+                href="https://example.org/blog/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/blog/"
+                hreflang="it"
+                href="https://example.org/it/blog/"
                 />
   </url><url>
     <loc>https://example.org/series/</loc>
