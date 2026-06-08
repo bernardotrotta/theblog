@@ -1,7 +1,6 @@
 ---
 date: 2026-06-08T12:00:00
 title: "Il Sistema Fiscale: Tasse, Imposte e Contributi"
-draft: "false"
 ---
 
 ## Introduzione

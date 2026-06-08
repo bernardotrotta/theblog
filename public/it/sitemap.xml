@@ -6,13 +6,13 @@
     <loc>https://example.org/it/blog/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/blog/"
+                hreflang="it"
+                href="https://example.org/it/blog/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/blog/"
+                hreflang="en-us"
+                href="https://example.org/blog/"
                 />
   </url><url>
     <loc>https://example.org/it/</loc>
@@ -42,13 +42,13 @@
     <loc>https://example.org/it/tags/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/tags/"
+                hreflang="en-us"
+                href="https://example.org/tags/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/tags/"
+                hreflang="it"
+                href="https://example.org/it/tags/"
                 />
   </url>
 </urlset>
