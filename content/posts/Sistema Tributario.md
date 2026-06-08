@@ -4,6 +4,8 @@ title: "Il Sistema Fiscale: Tasse, Imposte e Contributi"
 draft: "false"
 ---
 
+## Introduzione
+
 Prima di discutere di tassazione, è utile fare un piccolo appunto sul linguaggio adottato nel sistema giuridico italiano: la differenza tra tasse, imposte e contributi.
 
 - **Tasse**: si pagano per usufruire di un *servizio pubblico* specifico, come le tasse universitarie o il costo per il rilascio del passaporto.
@@ -20,7 +22,7 @@ Questo articolo spiega un concetto fondamentale: non è che pagando l'imposta si
 
 E qui si incontra subito la forbice nell'opinione pubblica: la critica più comune al sistema tributario italiano è: "Pago molte imposte ma non vedo un servizio equivalente". Chi difende il sistema risponde che molti benefici sono indiretti (sicurezza, stabilità economica, tribunali, infrastrutture, istruzione della forza lavoro, ecc.). Chi lo critica sostiene, invece, che la qualità dei servizi pubblici sia insufficiente rispetto al livello di tassazione.
 
-## Chi paga cosa: i soggetti passivi
+### Chi paga cosa: i soggetti passivi
 
 Il sistema fiscale distingue nettamente tra persone fisiche, società di persone e società di capitali.
 
@@ -30,7 +32,7 @@ Il sistema fiscale distingue nettamente tra persone fisiche, società di persone
 
 **3. Società di capitali (IRES).** Le società di capitali (S.p.a., S.r.l., S.a.p.a.) sono soggetti passivi autonomi e pagano l'**IRES** (Imposta sul Reddito delle Società). A differenza dell'IRPEF, l'IRES ha un'aliquota fissa (proporzionale) pari al **24%**.
 
-## Il calcolo: la base imponibile
+### Il calcolo: la base imponibile
 
 La base imponibile è il valore su cui viene calcolata l'imposta.
 
