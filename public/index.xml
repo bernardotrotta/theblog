@@ -12,9 +12,16 @@
 			<copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
 		
 		
-			<lastBuildDate>Wed, 01 Apr 2026 11:49:24 +0200</lastBuildDate>
+			<lastBuildDate>Mon, 08 Jun 2026 10:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Il Sistema Fiscale: Tasse, Imposte e Contributi</title>
+				<link>https://example.org/posts/sistema-tributario/</link>
+				<pubDate>Mon, 08 Jun 2026 10:00:00 +0000</pubDate>
+				<guid>https://example.org/posts/sistema-tributario/</guid>
+				<description>&lt;h2 id=&#34;introduzione&#34;&gt;Introduzione&lt;/h2&gt;&#xA;&lt;p&gt;Prima di discutere di tassazione, è utile fare un piccolo appunto sul linguaggio adottato nel sistema giuridico italiano: la differenza tra tasse, imposte e contributi.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Tasse&lt;/strong&gt;: si pagano per usufruire di un &lt;em&gt;servizio pubblico&lt;/em&gt; specifico, come le tasse universitarie o il costo per il rilascio del passaporto.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Imposte&lt;/strong&gt;: si pagano senza ricevere un servizio specifico in cambio, come l&amp;rsquo;imposta sul reddito delle persone fisiche (IRPEF) e l&amp;rsquo;imposta sul valore aggiunto (IVA).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Contributi&lt;/strong&gt;: servono a finanziare particolari attività o enti, come i contributi previdenziali all&amp;rsquo;INPS.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Da questa distinzione sorge spontanea una domanda: perché devo pagare un&amp;rsquo;imposta per la quale non riceverò un servizio diretto in cambio? La risposta si trova nell&amp;rsquo;articolo 53 della &lt;em&gt;Costituzione della Repubblica Italiana&lt;/em&gt;.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Me</title>
 				<link>https://example.org/about/me/</link>

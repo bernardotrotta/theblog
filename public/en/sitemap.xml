@@ -4,7 +4,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://example.org/</loc>
-    <lastmod>2026-04-01T11:49:24+02:00</lastmod>
+    <lastmod>2026-06-08T10:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -16,13 +16,16 @@
                 href="https://example.org/it/"
                 />
   </url><url>
+    <loc>https://example.org/posts/sistema-tributario/</loc>
+    <lastmod>2026-06-08T10:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.org/posts/</loc>
+    <lastmod>2026-06-08T10:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.org/about/me/</loc>
     <lastmod>2026-04-01T11:49:24+02:00</lastmod>
   </url><url>
     <loc>https://example.org/posts/autoencoder-e-anomaly-detection-per-la-previsione-del-fallimento-aziendale/</loc>
-    <lastmod>2026-03-31T19:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://example.org/posts/</loc>
     <lastmod>2026-03-31T19:30:00+00:00</lastmod>
   </url><url>
     <loc>https://example.org/about/</loc>
@@ -31,13 +34,13 @@
     <loc>https://example.org/blog/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/blog/"
+                hreflang="it"
+                href="https://example.org/it/blog/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/blog/"
+                hreflang="en-us"
+                href="https://example.org/blog/"
                 />
   </url><url>
     <loc>https://example.org/series/</loc>
