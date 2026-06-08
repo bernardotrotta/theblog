@@ -41,33 +41,33 @@ Il motivo risiede nella natura stessa dell&rsquo;anomaly detection tramite autoe
 
 
 
-  <meta itemprop="name" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
-  <meta itemprop="description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
+	<meta itemprop="name" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
+	<meta itemprop="description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
 Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la “normalità”. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.">
-  <meta itemprop="datePublished" content="2026-03-31T19:30:00+00:00">
-  <meta itemprop="dateModified" content="2026-03-31T19:30:00+00:00">
-  <meta itemprop="wordCount" content="1931">
-  <meta itemprop="image" content="https://example.org/">
+	<meta itemprop="datePublished" content="2026-03-31T19:30:00+00:00">
+	<meta itemprop="dateModified" content="2026-03-31T19:30:00+00:00">
+	<meta itemprop="wordCount" content="1931">
+	<meta itemprop="image" content="https://example.org/">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://example.org/">
-  <meta name="twitter:title" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
-  <meta name="twitter:description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="https://example.org/">
+	<meta name="twitter:title" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
+	<meta name="twitter:description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
 Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la “normalità”. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.">
 
 
 
     <meta property="og:url" content="https://example.org/posts/autoencoder-e-anomaly-detection-per-la-previsione-del-fallimento-aziendale/">
-  <meta property="og:site_name" content="Hello there!">
-  <meta property="og:title" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
-  <meta property="og:description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
+	<meta property="og:site_name" content="Hello there!">
+	<meta property="og:title" content="Autoencoder e Anomaly Detection per la previsione del fallimento aziendale">
+	<meta property="og:description" content="Step 1: Suddivisione del dataset La suddivisione del dataset è stata effettuata utilizzando la funzione train_test_split del modulo sklearn.model_selection, dopo aver caricato i dati con la libreria pandas. Il primo passo fondamentale è stato separare i record delle aziende classificate come “sane” (valore 0 nella colonna class) da quelle in fallimento (valore 1).
 Il motivo risiede nella natura stessa dell’anomaly detection tramite autoencoder: il modello deve essere addestrato esclusivamente su dati normali (le aziende sane) per imparare a ricostruire accuratamente la “normalità”. In questo modo, in fase di test, il modello restituirà un errore di ricostruzione sensibilmente più alto quando incontrerà esempi di aziende prossime alla bancarotta, che verranno quindi identificate come anomalie.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2026-03-31T19:30:00+00:00">
-    <meta property="article:modified_time" content="2026-03-31T19:30:00+00:00">
-    <meta property="og:image" content="https://example.org/">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-03-31T19:30:00+00:00">
+		<meta property="article:modified_time" content="2026-03-31T19:30:00+00:00">
+		<meta property="og:image" content="https://example.org/">
 
 
 
@@ -286,62 +286,62 @@ $$R = \frac{TP}{TP+FN}$$</li>
 <p>È possibile variare la soglia che divide i positivi dai negativi per bilanciare precision e recall. Questo compito è affidato alla funzione <code>precision_recall_curve()</code> di <code>sklearn</code>. Confrontando gli score calcolati (le loss) con i valori di classe reali, cerchiamo l&rsquo;errore di ricostruzione ideale per definire il fallimento.</p>
 <p>Per esemplificare, analizziamo 4 record:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Target ($y$)</th>
+					<th style="text-align: left">Loss ($y^*$)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.0388</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.1552</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.2076</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">1</td>
+					<td style="text-align: left">0.1097</td>
+			</tr>
+	</tbody>
 </table>
 <p>Scegliendo come soglia il primo valore di loss ($0.0388$), tutti i record con loss $\ge 0.0388$ vengono classificati come anomalie ($\hat{y}=1$):</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-          <th style="text-align: left">Classificazione ($\hat{y}$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-          <td style="text-align: left">1</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Target ($y$)</th>
+					<th style="text-align: left">Loss ($y^*$)</th>
+					<th style="text-align: left">Classificazione ($\hat{y}$)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.0388</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.1552</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.2076</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">1</td>
+					<td style="text-align: left">0.1097</td>
+					<td style="text-align: left">1</td>
+			</tr>
+	</tbody>
 </table>
 <p>Nota di progetto, il modello fa schifo a classificare perché è strano che ci siano questi valori</p>
 <p>Calcolando le metriche: $P = 1/4 = 25%$ e $R = 1/1 = 100%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.</p>
@@ -549,6 +549,23 @@ Un&rsquo;idea per individuare la soglia ideale consiste nel valutare i valori di
         </div>
 
       
+    <div class="pagination">
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://example.org/posts/sistema-tributario/">
+                    <span class="button__text"></span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
 
       
 

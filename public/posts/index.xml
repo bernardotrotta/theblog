@@ -78,62 +78,62 @@ $$R = \frac{TP}{TP+FN}$$</li>
 <p>È possibile variare la soglia che divide i positivi dai negativi per bilanciare precision e recall. Questo compito è affidato alla funzione <code>precision_recall_curve()</code> di <code>sklearn</code>. Confrontando gli score calcolati (le loss) con i valori di classe reali, cerchiamo l&rsquo;errore di ricostruzione ideale per definire il fallimento.</p>
 <p>Per esemplificare, analizziamo 4 record:</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Target ($y$)</th>
+					<th style="text-align: left">Loss ($y^*$)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.0388</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.1552</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.2076</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">1</td>
+					<td style="text-align: left">0.1097</td>
+			</tr>
+	</tbody>
 </table>
 <p>Scegliendo come soglia il primo valore di loss ($0.0388$), tutti i record con loss $\ge 0.0388$ vengono classificati come anomalie ($\hat{y}=1$):</p>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: left">Target ($y$)</th>
-          <th style="text-align: left">Loss ($y^*$)</th>
-          <th style="text-align: left">Classificazione ($\hat{y}$)</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.0388</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.1552</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">0</td>
-          <td style="text-align: left">0.2076</td>
-          <td style="text-align: left">1</td>
-      </tr>
-      <tr>
-          <td style="text-align: left">1</td>
-          <td style="text-align: left">0.1097</td>
-          <td style="text-align: left">1</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: left">Target ($y$)</th>
+					<th style="text-align: left">Loss ($y^*$)</th>
+					<th style="text-align: left">Classificazione ($\hat{y}$)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.0388</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.1552</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">0</td>
+					<td style="text-align: left">0.2076</td>
+					<td style="text-align: left">1</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">1</td>
+					<td style="text-align: left">0.1097</td>
+					<td style="text-align: left">1</td>
+			</tr>
+	</tbody>
 </table>
 <p>Nota di progetto, il modello fa schifo a classificare perché è strano che ci siano questi valori</p>
 <p>Calcolando le metriche: $P = 1/4 = 25%$ e $R = 1/1 = 100%$. Iterando questo processo per ogni valore di loss, otteniamo la curva Precision-Recall.</p>
@@ -210,6 +210,50 @@ Un&rsquo;idea per individuare la soglia ideale consiste nel valutare i valori di
 <li><strong>Efficienza</strong>: Sebbene spiegati passo-passo, i calcoli avvengono tramite operazioni vettoriali tra matrici, sfruttando l&rsquo;efficienza computazionale dei tensori.</li>
 </ul>
 ]]></content>
+        </item>
+        
+        <item>
+            <title></title>
+            <link>https://example.org/posts/sistema-tributario/</link>
+            <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+            
+            <guid>https://example.org/posts/sistema-tributario/</guid>
+            <description>&lt;p&gt;Prima di discutere di tassazione, è utile fare un piccolo appunto sul linguaggio adottato nel sistema giuridico italiano: la differenza tra tasse, imposte e contributi.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Tasse&lt;/strong&gt;: si pagano per usufruire di un &lt;em&gt;servizio pubblico&lt;/em&gt; specifico, come le tasse universitarie o il costo per il rilascio del passaporto.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Imposte&lt;/strong&gt;: si pagano senza ricevere un servizio specifico in cambio, come l&amp;rsquo;imposta sul reddito delle persone fisiche (IRPEF) e l&amp;rsquo;imposta sul valore aggiunto (IVA).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Contributi&lt;/strong&gt;: servono a finanziare particolari attività o enti, come i contributi previdenziali all&amp;rsquo;INPS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Da questa distinzione sorge spontanea una domanda: perché devo pagare un&amp;rsquo;imposta per la quale non riceverò un servizio diretto in cambio? La risposta si trova nell&amp;rsquo;articolo 53 della &lt;em&gt;Costituzione della Repubblica Italiana&lt;/em&gt;.&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>Prima di discutere di tassazione, è utile fare un piccolo appunto sul linguaggio adottato nel sistema giuridico italiano: la differenza tra tasse, imposte e contributi.</p>
+<ul>
+<li><strong>Tasse</strong>: si pagano per usufruire di un <em>servizio pubblico</em> specifico, come le tasse universitarie o il costo per il rilascio del passaporto.</li>
+<li><strong>Imposte</strong>: si pagano senza ricevere un servizio specifico in cambio, come l&rsquo;imposta sul reddito delle persone fisiche (IRPEF) e l&rsquo;imposta sul valore aggiunto (IVA).</li>
+<li><strong>Contributi</strong>: servono a finanziare particolari attività o enti, come i contributi previdenziali all&rsquo;INPS.</li>
+</ul>
+<p>Da questa distinzione sorge spontanea una domanda: perché devo pagare un&rsquo;imposta per la quale non riceverò un servizio diretto in cambio? La risposta si trova nell&rsquo;articolo 53 della <em>Costituzione della Repubblica Italiana</em>.</p>
+<blockquote>
+<p><strong>Comma 1:</strong> Tutti sono tenuti a concorrere alle spese pubbliche in ragione della loro capacità contributiva.</p>
+<p><strong>Comma 2:</strong> Il sistema tributario è informato a criteri di progressività.</p>
+</blockquote>
+<p>Questo articolo spiega un concetto fondamentale: non è che pagando l&rsquo;imposta si versi denaro a vuoto perché si è obbligati: semplicemente esistono spese pubbliche che finanziano servizi non vendibili al singolo individuo, bensì alla collettività. Risulta quindi praticamente impossibile calcolare l&rsquo;esatto contributo che ciascuno dovrebbe versare per usufruire, ad esempio, di una strada. Lo Stato sostiene che un servizio in cambio delle imposte esiste, ma non è sempre diretto o proporzionato a quanto ciascuno versa. Chi paga 10.000 € di imposte non riceve necessariamente servizi valutabili in 10.000 € nello stesso anno.</p>
+<p>E qui si incontra subito la forbice nell&rsquo;opinione pubblica: la critica più comune al sistema tributario italiano è: «Pago molte imposte ma non vedo un servizio equivalente». Chi difende il sistema risponde che molti benefici sono indiretti (sicurezza, stabilità economica, tribunali, infrastrutture, istruzione della forza lavoro, ecc.). Chi lo critica sostiene, invece, che la qualità dei servizi pubblici sia insufficiente rispetto al livello di tassazione.</p>
+<h2 id="chi-paga-cosa-i-soggetti-passivi">Chi paga cosa: i soggetti passivi</h2>
+<p>Il sistema fiscale distingue nettamente tra persone fisiche, società di persone e società di capitali.</p>
+<p><strong>1. Persone fisiche (IRPEF).</strong> Colpisce imprenditori individuali, lavoratori autonomi e dipendenti. L&rsquo;imposta si chiama <strong>IRPEF</strong> (Imposta sul Reddito delle Persone Fisiche). È un&rsquo;imposta <strong>progressiva a scaglioni</strong> che colpisce la somma di tutti i redditi percepiti (fondiari, di capitale, di lavoro, ecc.).</p>
+<p><strong>2. Società di persone (trasparenza fiscale).</strong> Le società di persone (S.s., S.n.c., S.a.s.) <strong>non pagano direttamente l&rsquo;imposta sui redditi</strong>. Si applica il principio della <strong>trasparenza fiscale</strong>: i redditi prodotti dalla società vengono imputati automaticamente ai singoli soci in proporzione alle loro quote di partecipazione, indipendentemente dal fatto che vengano effettivamente distribuiti. Saranno poi i soci a pagare l&rsquo;IRPEF su quel reddito imputato.</p>
+<p><strong>3. Società di capitali (IRES).</strong> Le società di capitali (S.p.a., S.r.l., S.a.p.a.) sono soggetti passivi autonomi e pagano l&rsquo;<strong>IRES</strong> (Imposta sul Reddito delle Società). A differenza dell&rsquo;IRPEF, l&rsquo;IRES ha un&rsquo;aliquota fissa (proporzionale) pari al <strong>24%</strong>.</p>
+<h2 id="il-calcolo-la-base-imponibile">Il calcolo: la base imponibile</h2>
+<p>La base imponibile è il valore su cui viene calcolata l&rsquo;imposta.</p>
+$$\text{Imposta} = \text{Base imponibile} \times \text{Aliquota}$$<p>dove la base imponibile è l&rsquo;importo da tassare e l&rsquo;aliquota è la percentuale applicata.</p>
+<p><strong>Esempio:</strong> Supponiamo che un prodotto costi 100 € (prezzo netto). Se l&rsquo;IVA è al 22%, la base imponibile è il prezzo netto, quindi 100 €, e l&rsquo;imposta da pagare si calcola moltiplicando la base imponibile per l&rsquo;aliquota:</p>
+$$ \begin{align}
+\text{Imposta} &= 100\text{ €} \times 0.22 \\ &= 22\text{ €}
+\end{align}$$<p>Il prezzo finale del prodotto sarà quindi dato dalla somma tra prezzo netto e imposta:</p>
+$$\begin{align}
+\text{Prezzo lordo} &= 100\text{ €} + 22\text{ €}  \\
+&=122\text{ €}
+\end{align}$$]]></content>
         </item>
         
     </channel>

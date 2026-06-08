@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -6,13 +7,13 @@
     <lastmod>2026-04-01T11:49:24+02:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/"
+                hreflang="en-us"
+                href="https://example.org/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/"
+                hreflang="it"
+                href="https://example.org/it/"
                 />
   </url><url>
     <loc>https://example.org/about/me/</loc>
@@ -27,40 +28,42 @@
     <loc>https://example.org/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://example.org/posts/sistema-tributario/</loc>
+  </url><url>
     <loc>https://example.org/blog/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/blog/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
                 href="https://example.org/blog/"
                 />
-  </url><url>
-    <loc>https://example.org/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="it"
-                href="https://example.org/it/series/"
+                href="https://example.org/it/blog/"
                 />
+  </url><url>
+    <loc>https://example.org/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
                 href="https://example.org/series/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="it"
+                href="https://example.org/it/series/"
+                />
   </url><url>
     <loc>https://example.org/tags/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/tags/"
+                hreflang="en-us"
+                href="https://example.org/tags/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/tags/"
+                hreflang="it"
+                href="https://example.org/it/tags/"
                 />
   </url>
 </urlset>
