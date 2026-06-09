@@ -104,6 +104,7 @@ $$\text{Imposta IRPEF Netta} = \text{Imposta IRPEF Lorda} - \text{Oneri Detraibi
 &amp;= 5.855 \text{ €}</p>
 <p>\end{align}</p>
 $$
+Dopo aver calcolato gli oneri detraibili, vengono sottrati all'imposta lorda:
 $$<p>\begin{align}
 \text{Imposta IRPEF Netta}</p>
 <p>&amp;= 9.740 \text{ €} - 5.855 \text{ €} \

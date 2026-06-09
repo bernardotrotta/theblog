@@ -97,6 +97,7 @@ $$\begin{align}
 &= 5.855 \text{ €}
 
 \end{align}$$
+Dopo aver calcolato gli oneri detraibili, vengono sottrati all'imposta lorda:
 $$\begin{align}
 \text{Imposta IRPEF Netta}
 
