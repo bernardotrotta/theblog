@@ -91,9 +91,7 @@ Tra gli *oneri detraibili* rientrano le spese sanitarie, gli interessi sul mutuo
 | Spese universitarie       | 1.500 €  | 19%                    |
 | Ristrutturazione edilizia | 10.000 € | 50%                    |
 
-$$
-
-\begin{align}
+$$\begin{align}
 \text{Imposta IRPEF netta}
 &= 9.740\,\text{ €}
 - \Big[
@@ -103,7 +101,5 @@ $$
 \\
 &= 9.740 \text{ €} - 5.855 \text{ €} \\
 &= 3.885 \text{ €}
-\end{align}
-
-$$
+\end{align}$$
 La domanda sorge spontanea: che bisogno c'è di dividere oneri deducibili e detraibili e applicare due tipologie di calcolo diverse? Di nuovo, la ragione si trova nel comma 1 dell'articolo 53 sopra citato. Gli oneri deducibili servono a misurare meglio la capacità contributiva. La Costituzione italiana prevede che ciascuno contribuisca in base alla propria capacità contributiva e alcune spese vengono considerate tali da ridurre il reddito effettivamente disponibile. Se una persona guadagna 40.000 € ma versa 5.000 € di contributi previdenziali obbligatori, il legislatore ritiene che la sua capacità economica effettiva sia inferiore a 40.000 € e permette quindi di dedurre quei 5.000 € dal reddito. Gli oneri detraibili, invece, sono spesso utilizzati per incentivare determinati comportamenti: frequentare l'università non è un obbligo, ma lo Stato ti incentiva a farlo offrendoti un vantaggio fiscale, perché ha bisogno di un alto numero di cittadini istruiti. Prima di chiudere il discorso sull'IRPEF, c'è da notare un aspetto interessante: matematicamente parlando, il sistema agevola intrinsecamente i redditi più alti. Supponiamo un onere deducibile di 1.000 €: chi ha un'aliquota marginale del 23% risparmia circa 230 €; chi ha un'aliquota marginale del 43% risparmia circa 430 €. Se però una spesa è detraibile, il beneficio è teoricamente uguale per tutti, perché la percentuale si calcola sulla spesa e non sul reddito. Tuttavia, trattandosi spesso di spese facoltative, sarà il contribuente con maggiore disponibilità economica a sostenere più frequentemente quelle spese, ottenendo di fatto un vantaggio superiore.
