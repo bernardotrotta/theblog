@@ -93,8 +93,7 @@ Tra gli *oneri detraibili* rientrano le spese sanitarie, gli interessi sul mutuo
 
 $$\begin{align}
 \text{Imposta IRPEF netta}
-&= 9.740\,\text{ €}
-- \Big[
+&= 9.740\,\text{ €} - \Big[
 0{,}19 \cdot (1.000 + 2.000 + 1.500)\,\text{€} \\
 &\quad + 0{,}50 \cdot 10.000\,\text{€}
 \Big]
