@@ -58,13 +58,13 @@
     <loc>https://example.org/tags/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="en-us"
-                href="https://example.org/tags/"
+                hreflang="it"
+                href="https://example.org/it/tags/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="it"
-                href="https://example.org/it/tags/"
+                hreflang="en-us"
+                href="https://example.org/tags/"
                 />
   </url>
 </urlset>

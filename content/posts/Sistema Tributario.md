@@ -91,16 +91,12 @@ Tra gli *oneri detraibili* rientrano le spese sanitarie, gli interessi sul mutuo
 | Spese universitarie       | 1.500 €  | 19%                    |
 | Ristrutturazione edilizia | 10.000 € | 50%                    |
 
-$$
-
-\begin{align}
+$$\begin{align}
 \text{Oneri Detraibili} &=
 0{,}19 \cdot (1.000 + 2.000 + 1.500)\,\text{€} + 0{,}50 \cdot 10.000\,\text{€} \\
 &= 5.855 \text{ €}
 
-\end{align}
-
-$$
+\end{align}$$
 $$\begin{align}
 \text{Imposta IRPEF Netta}
 
