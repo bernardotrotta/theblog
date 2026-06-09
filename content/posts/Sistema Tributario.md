@@ -95,14 +95,12 @@ $$\begin{align}
 \text{Oneri Detraibili} &=
 0{,}19 \cdot (1.000 + 2.000 + 1.500)\,\text{€} + 0{,}50 \cdot 10.000\,\text{€} \\
 &= 5.855 \text{ €}
-
 \end{align}$$
 
 Dopo aver calcolato gli oneri detraibili, vengono sottrati all'imposta lorda:
 
 $$\begin{align}
 \text{Imposta IRPEF Netta}
-
 &= 9.740 \text{ €} - 5.855 \text{ €} \\
 &= 3.885 \text{ €}
 \end{align}$$

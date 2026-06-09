@@ -98,18 +98,16 @@ $$\text{Imposta IRPEF Netta} = \text{Imposta IRPEF Lorda} - \text{Oneri Detraibi
 			</tr>
 	</tbody>
 </table>
-<p>$$\begin{align}
-\text{Oneri Detraibili} &amp;=
-0{,}19 \cdot (1.000 + 2.000 + 1.500),\text{€} + 0{,}50 \cdot 10.000,\text{€} \
-&amp;= 5.855 \text{ €}</p>
-<p>\end{align}$$</p>
-<p>Dopo aver calcolato gli oneri detraibili, vengono sottrati all&rsquo;imposta lorda:</p>
-<p>$$\begin{align}
-\text{Imposta IRPEF Netta}</p>
-<p>&amp;= 9.740 \text{ €} - 5.855 \text{ €} \
-&amp;= 3.885 \text{ €}
-\end{align}$$</p>
-<p>La domanda sorge spontanea: che bisogno c&rsquo;è di dividere oneri deducibili e detraibili e applicare due tipologie di calcolo diverse? Di nuovo, la ragione si trova nel comma 1 dell&rsquo;articolo 53 sopra citato. Gli oneri deducibili servono a misurare meglio la capacità contributiva. La Costituzione italiana prevede che ciascuno contribuisca in base alla propria capacità contributiva e alcune spese vengono considerate tali da ridurre il reddito effettivamente disponibile. Se una persona guadagna 40.000 € ma versa 5.000 € di contributi previdenziali obbligatori, il legislatore ritiene che la sua capacità economica effettiva sia inferiore a 40.000 € e permette quindi di dedurre quei 5.000 € dal reddito. Gli oneri detraibili, invece, sono spesso utilizzati per incentivare determinati comportamenti: frequentare l&rsquo;università non è un obbligo, ma lo Stato ti incentiva a farlo offrendoti un vantaggio fiscale, perché ha bisogno di un alto numero di cittadini istruiti. Prima di chiudere il discorso sull&rsquo;IRPEF, c&rsquo;è da notare un aspetto interessante: matematicamente parlando, il sistema agevola intrinsecamente i redditi più alti. Supponiamo un onere deducibile di 1.000 €: chi ha un&rsquo;aliquota marginale del 23% risparmia circa 230 €; chi ha un&rsquo;aliquota marginale del 43% risparmia circa 430 €. Se però una spesa è detraibile, il beneficio è teoricamente uguale per tutti, perché la percentuale si calcola sulla spesa e non sul reddito. Tuttavia, trattandosi spesso di spese facoltative, sarà il contribuente con maggiore disponibilità economica a sostenere più frequentemente quelle spese, ottenendo di fatto un vantaggio superiore.</p>
+$$\begin{align}
+\text{Oneri Detraibili} &=
+0{,}19 \cdot (1.000 + 2.000 + 1.500)\,\text{€} + 0{,}50 \cdot 10.000\,\text{€} \\
+&= 5.855 \text{ €}
+\end{align}$$<p>Dopo aver calcolato gli oneri detraibili, vengono sottrati all&rsquo;imposta lorda:</p>
+$$\begin{align}
+\text{Imposta IRPEF Netta}
+&= 9.740 \text{ €} - 5.855 \text{ €} \\
+&= 3.885 \text{ €}
+\end{align}$$<p>La domanda sorge spontanea: che bisogno c&rsquo;è di dividere oneri deducibili e detraibili e applicare due tipologie di calcolo diverse? Di nuovo, la ragione si trova nel comma 1 dell&rsquo;articolo 53 sopra citato. Gli oneri deducibili servono a misurare meglio la capacità contributiva. La Costituzione italiana prevede che ciascuno contribuisca in base alla propria capacità contributiva e alcune spese vengono considerate tali da ridurre il reddito effettivamente disponibile. Se una persona guadagna 40.000 € ma versa 5.000 € di contributi previdenziali obbligatori, il legislatore ritiene che la sua capacità economica effettiva sia inferiore a 40.000 € e permette quindi di dedurre quei 5.000 € dal reddito. Gli oneri detraibili, invece, sono spesso utilizzati per incentivare determinati comportamenti: frequentare l&rsquo;università non è un obbligo, ma lo Stato ti incentiva a farlo offrendoti un vantaggio fiscale, perché ha bisogno di un alto numero di cittadini istruiti. Prima di chiudere il discorso sull&rsquo;IRPEF, c&rsquo;è da notare un aspetto interessante: matematicamente parlando, il sistema agevola intrinsecamente i redditi più alti. Supponiamo un onere deducibile di 1.000 €: chi ha un&rsquo;aliquota marginale del 23% risparmia circa 230 €; chi ha un&rsquo;aliquota marginale del 43% risparmia circa 430 €. Se però una spesa è detraibile, il beneficio è teoricamente uguale per tutti, perché la percentuale si calcola sulla spesa e non sul reddito. Tuttavia, trattandosi spesso di spese facoltative, sarà il contribuente con maggiore disponibilità economica a sostenere più frequentemente quelle spese, ottenendo di fatto un vantaggio superiore.</p>
 ]]></content>
         </item>
         
