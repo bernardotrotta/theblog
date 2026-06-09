@@ -92,7 +92,7 @@ Tra gli *oneri detraibili* rientrano le spese sanitarie, gli interessi sul mutuo
 | Ristrutturazione edilizia | 10.000 € | 50%                    |
 
 $$\begin{align}
-\text{Imposta IRPEF netta}
+\text{Imposta IRPEF Netta}
 &= 9.740\,\text{ €} - \Big[
 0{,}19 \cdot (1.000 + 2.000 + 1.500)\,\text{€} \\
 &\quad + 0{,}50 \cdot 10.000\,\text{€}
