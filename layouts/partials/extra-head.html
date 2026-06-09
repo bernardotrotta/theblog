@@ -47,4 +47,22 @@
     margin-right: auto !important;
     cursor: zoom-in;
   }
+
+  /* ── Responsive MathJax ── */
+
+  /* Display-math blocks: scroll horizontally if too wide */
+  mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+    padding-block: 0.25em;   /* avoid clipping ascenders/descenders */
+  }
+
+  /* On small screens, scale down the MathJax font a bit */
+  @media (max-width: 600px) {
+    mjx-container {
+      font-size: 90% !important;
+    }
+  }
 </style>
